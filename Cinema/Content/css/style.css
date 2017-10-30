@@ -1,0 +1,585 @@
+body {
+    background-color: #ececec;
+    font-family: 'Nunito', sans-serif;
+}
+
+header {
+    background-color: red;
+}
+
+.navbar {
+    background-color: black;
+    min-height: 100px;
+    margin-bottom: 0px;
+}
+
+.navbar-red {
+    background-color: red;
+    min-height: 60px;
+    margin-bottom: 0px;
+}
+
+.navbar-static-top li {
+    padding: 30px 10px 30px 10px;
+    border-width: 5px;
+    border-right: 2px;
+    border-color: white;
+    display: inline;
+    font-size: 25px;
+}
+
+.navbar-li li {
+    margin-top: 10px;
+    text-transform: uppercase;
+    padding: 7px 10px 7px 10px;
+    border-width: 5px;
+    border-right: 2px;
+    border-color: white;
+    display: inline;
+    font-size: 18px;
+    border-color: grey;
+}
+
+.navbar-center {
+    width: 100%;
+}
+
+.navbar-center li {
+    float: none;
+    display: inline-block;
+}
+
+.navbar-center {
+    text-align: center;
+}
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.navbar-static-top .dropdown-menu li {
+    padding: 30px 0px 40px 0px;
+}
+
+.navbar-brand-center {
+    min-height: 100px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.navbar-brand {
+    padding-top: 20px;
+}
+
+.navbar-button-border {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.dropdown-toggle {
+    color: black;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.navbar-nav li .navbar-button ul li a {
+    color: black;
+    font-size: 20px;
+}
+
+.dropdown-menu ul {
+    max-width: 120px;
+}
+
+.navbar-button {
+    color: white;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+    background-color: transparent;
+    text-decoration: underline
+}
+
+.navbar-nav li .navbar-button a {
+    color: white;
+    border-right: 2px;
+    border-color: white;
+}
+
+.navbar-nav li .navbar-button a:hover,
+.navbar-nav li .navbar-button a:focus {
+    background-color: transparent;
+    text-decoration: underline
+}
+
+.navbar icon-bar {
+    color: white;
+}
+
+.reservation {
+    margin-top: 50px;
+}
+
+.reservation-top {
+    text-align: center;
+}
+
+.reservation-top .h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    color: black;
+}
+
+.reservation-top .dropdown-menu {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+.reservation-top .selectpicker {
+    text-align: center;
+    font-size: 10px;
+    color: black;
+}
+
+.reservation-top button {
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    margin-top: 17px;
+}
+
+.reservation-top .btn-primary {
+    border-color: black;
+    background-color: white;
+}
+
+.reservation-top .btn-primary:focus,
+.reservation-top .btn-primary:hover {
+    background-color: #a50000;
+    color: white;
+}
+
+.reservation-top .btn-group .active {
+    background-color: red;
+    color: white;
+}
+
+.reservation-table-top .col-lg-3 button {
+    width: 250px;
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    background-color: white;
+    border-color: black;
+}
+
+.reservation-table-top .col-lg-3 {
+    text-align: center;
+}
+
+.reservation-table-top .dropdown-menu {
+    min-width: 230px;
+    left: 10%;
+}
+
+.reservation-table-top .dropdown-menu li a {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.reservation-table {
+    margin-top: 50px;
+}
+
+.reservation-table .table-condensed th {
+    border-bottom: 3px solid red;
+}
+
+.reservation-table .table-condensed tr td p {
+    margin-top: 10px;
+}
+
+.reservation-table .table-condensed tr td img {
+    margin-top: 5px;
+}
+
+.reservation-table .table-condensed tbody {
+    background-color: white;
+}
+
+.newandsoon {
+    background-color: black;
+    padding-top: 70px;
+}
+
+.active {
+    background-color: black;
+}
+
+.newandsoon .nav-tabs li a {
+    font-size: 30px;
+    color: white;
+    background-color: #191919;
+    border-bottom: 1px solid white;
+}
+
+.newandsoon .nav-tabs li a:focus,
+.newandsoon .nav-tabs li a:hover {
+    background-color: black;
+}
+
+.newandsoon .nav-tabs>li.active>a {
+    background-color: black;
+    color: white;
+    cursor: default;
+    border: 1px solid white;
+    border-bottom-color: transparent;
+}
+
+.categoriesbuttons {
+    margin-top: 25px;
+}
+
+.categoriesbuttons .col-lg-3 p {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: white;
+}
+
+.categoriesbuttons button {
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.categoriesbuttons button:hover {
+    color: black;
+    background-color: red;
+    border: 1px solid white;
+}
+
+.categoriesbuttons .active {
+    color: black;
+    background-color: red;
+    border: 1px solid white;
+}
+
+.poster {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+/* .poster img:hover {
+    border: 2px solid red;
+    box-shadow: 0 0 10px #333;
+    -webkit-box-shadow: 0 0 10px #333;
+    -moz-box-shadow: 0 0 10px #333;
+    -o-box-shadow: 0 0 10px #333;
+    -ms-box-shadow: 0 0 10px #333;
+} */
+
+.poster p {
+    position: absolute;
+    top: 88%;
+    color: white;
+    font-size: 18px;
+}
+
+.eventsandnews {
+    margin-top: 0px;
+    margin-bottom: 300px;
+}
+
+.eventsandnews img {
+    margin: 0 auto;
+    border-radius: 4%;
+}
+
+.eventsandnews .h1 {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+.eventsandnews .hr {
+    border-color: white;
+}
+
+.eventsandnews .h3 {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+.img-center {
+    display: block;
+    margin: 0 auto;
+}
+
+.footerline hr {
+    margin: 0;
+    border: red solid 2px;
+}
+
+footer {
+    text-align: center;
+    background-image: url("../images/footer.jpg");
+}
+
+footer .group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+footer .group-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+footer .group-name p {
+    color: white;
+    cursor: context-menu;
+}
+
+footer .group-element a {
+    color: gray;
+    margin-bottom: 2px;
+}
+
+footer .group-element a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.options {
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.poster .image {
+    background-size: 100%;
+    width: 220px;
+    height: 324px;
+    overflow-y: hidden;
+}
+
+.poster .image .overlaydetails {
+    position: relative;
+    width: 220px;
+    height: 78px;
+    background-color: #333333;
+}
+
+.poster .image .overlayplayicon {
+    position: relative;
+    top: -350px;
+    left: -150px;
+}
+
+.modal-content {
+    background-color: black;
+    color: white;
+    border: 1px solid red;
+}
+
+.modal-content button {
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.modal-content button:hover {
+    color: black;
+    background-color: red;
+    border: 1px solid white;
+}
+
+.modal-content .active {
+    color: black;
+    background-color: red;
+    border: 1px solid white;
+}
+
+.modal-footer {
+    border: 0px;
+}
+
+.modal-header {
+    border: 0px;
+}
+
+.moviedetails_trailer_section {
+    font-size: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.moviedetails_trailer_section .col-lg-6 button {
+    margin-left: 50%;
+    text-align: left;
+    font-size: 30px;
+    color: black;
+}
+
+.moviedetails_trailer_section .col-lg-6 .btn-primary {
+    border-color: black;
+    background-color: white;
+}
+
+.moviedetails_trailer_section .col-lg-6 .btn-primary:focus,
+.moviedetails_trailer_section .col-lg-6 .btn-primary:hover {
+    background-color: #a50000;
+    color: white;
+}
+
+.blackbackground {
+    background: black;
+}
+
+.moviedetails_desc_section {
+    color: white;
+    margin-top: 30px;
+}
+
+.moviedetails_trailer_section {
+    font-size: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.moviedetails_trailer_section .col-lg-6 button {
+    margin-left: 50%;
+    text-align: left;
+    font-size: 30px;
+    color: black;
+}
+
+.moviedetails_trailer_section .col-lg-6 .btn-primary {
+    border-color: black;
+    background-color: white;
+}
+
+.moviedetails_trailer_section .col-lg-6 .btn-primary:focus,
+.moviedetails_trailer_section .col-lg-6 .btn-primary:hover {
+    background-color: #a50000;
+    color: white;
+}
+
+.moviedetails_reservation {
+    margin: 20px 0px 30px 0px;
+}
+
+.moviedetails_reservation button {
+    font-size: 20px;
+}
+
+.moviedetails_reservation .col-lg-6 {
+    text-align: center;
+}
+
+.moviedetails_reservation .dropdown-toggle {
+    width: auto;
+}
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active {
+    color: black;
+}
+
+.dropdown-menu {
+    width: 50px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .red-bar {
+        height: 1px;
+    }
+    .navbar-toggle {
+        height: 60px;
+        width: 80px;
+        margin-top: 20px;
+        background-color: red;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    body {
+        background-color: #ececec;
+    }
+    .navbar-collapse ul li {
+        padding: 0px;
+    }
+    .firstline {
+        width: calc(100% - 50px);
+        display: inline-block;
+        vertical-align: top;
+    }
+    .dropdown-toggle {
+        margin-left: 10px;
+    }
+    .btn-responsive {
+        padding: 2px 4px;
+        font-size: 80%;
+        line-height: 1;
+        border-radius: 3px;
+    }
+    iframe {
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+    .navbar-red {
+        background-color: red;
+        min-height: 0px;
+        margin-bottom: 0px;
+    }
+    .moviedetails_trailer_section .col-lg-6 button {
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .reservation-top .col-lg-6 {
+        margin-bottom: 10px;
+    }
+    .reservation-table-top .col-lg-3 {
+        margin-bottom: 10px;
+    }
+    .btn-responsive {
+        padding: 4px 9px;
+        font-size: 90%;
+        line-height: 1.2;
+        margin-top: 5px;
+    }
+    .blackbackground img {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .moviedetails_trailer_section .col-lg-6 button {
+        margin-left: 0%;
+    }
+}

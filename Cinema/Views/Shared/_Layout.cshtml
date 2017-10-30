@@ -1,44 +1,95 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+<head>
+    <title>Kino - Cinema</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
+    <script src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
+    <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/youtubeapi.js")"></script>
+    <link href="@Url.Content("https://fonts.googleapis.com/css?family=Nunito&amp;subset=latin-ext")" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/boostrap-select.css")">
+    <script src="@Url.Content("~/Content/js/bootstrap/bootstrap-select.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style.css")">
+    <script src="@Url.Content("~/Content/js/poster.js")"></script>
 </head>
+ @RenderBody()
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <footer>
+
+        <div class="footerline">
+            <hr>
+        </div>
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="group">
+                        <div class="group-name">
+                            <p>O NAS</p>
+                        </div>
+                        <div class="group-element">
+                            <a href="@Url.Content("https://michalmironczuk.pl")" target="_blank">Portfolio</a>
+                        </div>
+                        <div class="group-element">
+                            <a>Kontakt</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="group">
+                        <div class="group-name">
+                            <p>OBSERWUJ NAS</p>
+                        </div>
+                        <div class="group-element">
+                            <a href="@Url.Content("https://www.facebook.com/profile.php?id=100001407330718")" target="_blank">Facebook</a>
+                        </div>
+                        <div class="group-element">
+                            <a href="@Url.Content("https://www.instagram.com/michal_mironczuk/")" target="_blank">Instagram</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="group-element">
+                        <p style="color: gray;">Cinema @DateTime.Now.Year ©  </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </footer>
 </body>
+
 </html>
+<script>
+    $(document).ready(function() {
+
+        OnPosterHover();
+
+        $(document).on('hidden.bs.modal', '.modal', function() {
+            player.stopVideo();
+        });
+    });
+
+    function OnPosterHover() {
+        $('.poster').hover(
+            function() {
+                var linkToTrailer = $(this).attr('data-poster-trailer');
+                linkToTrailerPlay = linkToTrailer;
+                OnPosterGrayWithBorder($(this));
+                OnPosterBottomDetails($(this));
+                OnPosterTextColorChange($(this));
+                OnPosterPlayIcon($(this));
+            },
+            function() {
+                OffPosterGrayWithBorder($(this));
+                OffPosterBottomDetails($(this));
+                OffPosterTextColorChange($(this));
+                OffPosterPlayIcon($(this));
+            }
+        );
+    }
+</script>

@@ -1,31 +1,576 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿   <header>
+        <div class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- LOGO PO SRODKU -->
+                    <!-- <div class="navbar-brand-center">-->
+                    <div class="navbar-brand">
+                        <a><img id="logologologo" src="@Url.Content("~/Content/images/logo.png")" alt="Cinema"></a>
+                    </div>
+                    <!--</div>-->
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".HeaderCollapse">
+                        <span>MENU</span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse HeaderCollapse">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                    <ul class="nav navbar-nav navbar-right">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                        <li>
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#"><img src="@Url.Content("~/Content/images/map_set_icon.png")" height="20" class="mr-xs"></span> Wybierz kino </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="navbar-button-border">
+                                <form class="form-inline">
+                                    <input class="form-control mr-sm-2" type="text" placeholder="Szukaj... " aria-label="Search">
+                                </form>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="navbar-button" id="chooseLang">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">PL  <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">PL</a></li>
+                                        <li><a href="#">EN</a></li>
+                                        <li><a href="#">DE</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">REPERTUAR </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">OFERTY </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">NASZE KINA </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="red-bar">
+        <div class="navbar-red navbar-static-top navbar-li">
+            <div class="container">
+                <div class="collapse navbar-collapse">
+
+                    <ul class="hidden-xs nav navbar-nav navbar-center">
+
+                        <li>
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">REPERTUAR </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">OFERTY </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="navbar-button">
+                                <div class="navbar-button-border">
+                                    <a href="#">NASZE KINA </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="@Url.Content("~/Content/images/king.jpg")" alt="King Arthur">
+                </div>
+
+                <div class="item">
+                    <img src="@Url.Content("~/Content/images/skyfall.jpg")" alt="Skyfall">
+                </div>
+
+                <div class="item">
+                    <img src="@Url.Content("~/Content/images/xmen.jpg")" alt="X-Men">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Poprzedni</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Następny</span>
+            </a>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <section class="reservation">
+        <div class="container">
+            <div class="reservation-top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <p class="h1">REZERWUJ</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary active">DATA</button>
+                            <button type="button" class="btn btn-primary">FILMY</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reservation-table-top">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        @Html.DropDownList("chooseCinema", ViewBag.CinemasList as SelectList, "WYBIERZ KINO", new { id = "CinemaID"})
+                        <select id="St"></select>
+                        @*<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-map-marker"></span>  WYBIERZ KINO <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach(var cinema in Model.CinemaPlaces)
+                            {
+                            <li><a href="#">@cinema.City - @cinema.Name</a></li>      
+                            }
+                        </ul>*@
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        @Html.DropDownList("chooseMovie", ViewBag.MoviesList as SelectList, "WYBIERZ FILM", new { id = "MovieID" })
+
+                        @*<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-facetime-video"></span>  WYBIERZ FILM <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">   
+                            
+                           foreach (var movie in Model.MoviesInPickedCinema)
+                            {
+                                <li><a href="#">@movie.Title</a></li>
+                            }
+                        </ul>*@
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        @Html.DropDownList("chooseType", ViewBag.TypesList as SelectList, "WYBIERZ TYP", new { id = "TypeID" })
+                        @*<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-eye-open"></span> WYBIERZ TYP SEANSU <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Tablet</a></li>
+                            <li><a href="#">Smartphone</a></li>
+                        </ul>*@
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th"></span> WYBIERZ DATE <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Tablet</a></li>
+                            <li><a href="#">Smartphone</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reservation-table">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Film</th>
+                                        <th>Wiek</th>
+                                        <th>Czas trwania</th>
+                                        <th>10:00</th>
+                                        <th>11:00</th>
+                                        <th>12:00</th>
+                                        <th>13:00</th>
+                                        <th>14:00</th>
+                                        <th>15:00</th>
+                                        <th>16:00</th>
+                                        <th>17:00</th>
+                                        <th>18:00</th>
+                                        <th>19:00</th>
+                                        <th>20:00</th>
+                                        <th>21:00</th>
+                                        <th>22:00</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>Skyfall</p>
+                                        </td>
+                                        <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
+                                        <td>
+                                            <p>143 minut</p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Król Artur: Legenda miecza</p>
+                                        </td>
+                                        <td><img src="@Url.Content("~/Content/images/ageN_A.png")"></td>
+                                        <td>
+                                            <p>126 minut</p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>X-Men</p>
+                                        </td>
+                                        <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
+                                        <td>
+                                            <p>104 minut</p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="newandsoon">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#nowbooking">NA EKRANIE</a></li>
+                <li><a data-toggle="tab" href="#soon">WKRÓTCE</a></li>
+            </ul>
+            <div class="categoriesbuttons">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>Gatunki:</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button name="button" class="btn btn-default btn-responsive active">WSZYSTKIE</button>
+                        <button name="button" class="btn btn-default btn-responsive">AKCJA</button>
+                        <button name="button" class="btn btn-default btn-responsive">BIOGRAFICZNY</button>
+                        <button name="button" class="btn btn-default btn-responsive">DOKUMENTALNY</button>
+                        <button name="button" class="btn btn-default btn-responsive">DRAMAT</button>
+                        <button name="button" class="btn btn-default btn-responsive">FAMILIJNY</button>
+                        <button name="button" class="btn btn-default btn-responsive">HORROR</button>
+                        <button name="button" class="btn btn-default btn-responsive">KOMEDIA</button>
+                        <button name="button" class="btn btn-default btn-responsive">MUZYCZNY</button>
+                        <button name="button" class="btn btn-default btn-responsive">SCI-FI</button>
+                        <button name="button" class="btn btn-default btn-responsive">THRILLER</button>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="tab-content">
+                <div id="nowbooking" class="tab-pane fade in active">
+                    <h3>HOME</h3>
+                    <p>Some content.</p>
+                </div>
+                <div id="soon" class="tab-pane fade">
+                    <h3>Menu 1</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+            </div>
+            <div class="posters">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <div class="poster" data-poster-id="1" data-poster-trailer="6kw1UVovByw">
+                            <div class="image">
+                                <div class="posterimg">
+                                    <img src="@Url.Content("~/Content/images/skyfallposter.jpg")" width="220" height="324">
+                                </div>
+                                <div class="overlaydetails">
+                                    <div class="categoriesbuttons">
+                                        <button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                    </div>
+
+                                </div>
+                                <div class="overlayplayicon">
+                                    <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
+                                </div>
+                                <div class="postertitle">
+                                    <p>Skyfall 007</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <div class="poster" data-poster-id="2" data-poster-trailer="40wycr0oMYA">
+                            <div class="image">
+                                <div class="posterimg">
+                                    <img src="@Url.Content("~/Content/images/arthurposter.jpg")" width="220" height="324" data-toggle="modal" data-target="#myModal">
+                                </div>
+                                <div class="overlaydetails">
+                                    <div class="categoriesbuttons">
+                                        <button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                    </div>
+                                </div>
+                                <div class="overlayplayicon">
+                                    <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
+                                </div>
+                                <div class="postertitle">
+                                    <p>Król Artur: Legenda Miecza</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <div class="poster" data-poster-id="3" data-poster-trailer="uddrEiJYToI">
+                            <div class="image">
+                                <div class="posterimg">
+                                    <img src="@Url.Content("~/Content/images/xmenposter.jpg")" width="220" height="324">
+                                </div>
+                                <div class="overlaydetails">
+                                    <div class="categoriesbuttons">
+                                        <button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                    </div>
+                                </div>
+                                <div class="overlayplayicon">
+                                    <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
+                                </div>
+                                <div class="postertitle">
+                                    <p>X-Men Apocalypse</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trailerModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Zapowiedź filmu</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- iframe youtube do zwiastunów o id="player" -->
+                            <div id="player" class="iframe"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-responsive active close" data-dismiss="modal">Zamknij</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#events">WYDARZENIA</a></li>
+                <li><a data-toggle="tab" href="#news">NOWOŚCI</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="eventsandnews">
+                    <div id="events" class="tab-pane fade in active">
+                        <div class="event">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="h1"> Mecz Polska - Niemcy 12.03.2018
+                                    <p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <img class="img-center" src="@Url.Content("~/Content/images/MECZ.jpg")">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <p class="h3">Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf
+                                <p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div id="news" class="tab-pane fade">
+                        <div class="news">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="h1"> 1+1
+                                    <p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <img class="img-center" src="images/drugiepiwo.jpg">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <p class="h3">Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf
+                                <p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script>
+    $(function ()){
+        $("#CinemaID").change(function () {
+            $.get("/Cinema/GetMovieById/ID", { ID: $("CinemaID").val() }, function (data) {
+
+                $.each(data, function (index, row) {
+                    $("#St").append("<option value='" + row.id + "'>" + row.Title +"</option>")
+                });
+            })
+       
+        });
+    }
+</script>
