@@ -7,8 +7,9 @@ namespace Cinema.Models
     {
         [Display(Name = "Id")]
         public int Id { get; set; }
-        [Display(Name = "Nazwa gatunku")]
+        [Display(Name = "Nazwa gatunku po polsku")]
         public string Name { get; set; }
-        public ICollection<Movie>Movies { get; set; }
+        [Display(Name = "Nazwa gatunku po angielsku")]
+        public string EnglishName { get; set; }
     }
 }

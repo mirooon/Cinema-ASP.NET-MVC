@@ -1,5 +1,7 @@
 ﻿using Cinema.Context;
+using Cinema.Models;
 using Cinema.Models.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,40 +16,134 @@ namespace Cinema.Controllers
 
         public ActionResult Index()
         {
-            //var cinemas = db.Cinemas.ToList();
-            //SelectList listcinemas = new SelectList(cinemas, "Id", "FullName");
-            //ViewBag.cinemaslist = listcinemas;
 
             ViewBag.CinemasList = new SelectList(db.Cinemas,"Id", "FullName");
             ViewBag.MoviesList = new SelectList(db.Movies, "Id", "Title");
             ViewBag.TypesList = new SelectList(db.MovieTypes, "Id", "Name");
 
-            //var movies = db.Movies.ToList();
-            //SelectList listmovies = new SelectList(movies, "Id", "Title");
-            //ViewBag.movieslist = listmovies;
-
-            //var movietypes = db.MovieTypes.ToList();
-            //SelectList listmovietypes = new SelectList(movietypes, "Id", "Name");
-            //ViewBag.movietypeslist = listmovietypes;
-            ViewBag.MoviesList = GetMovieById(1);
-            return View();
+            HomeViewModel vm = new HomeViewModel()
+            {
+                MovieNowBooking = db.Movies.Where(a => a.Status == Status.NowBooking),
+                MovieSoon = db.Movies.Where(a => a.Status == Status.Soon),
+                Genres = db.Genres
+            };
+            
+            return View(vm);
         }
-        public SelectList GetMovieById(int ID)
+        public JsonResult ShowGenre(int id)
         {
-            var position = db.MoviePositions.Include("Movie").Where(a => a.CinemaId == ID).Select(p => p.Movie);
+            db.Configuration.ProxyCreationEnabled = false;
+            var moviesWithGenreId = db.Movies.Where(a => a.GenreId == 1).ToList();
+            if(id != 1)
+            {
+                moviesWithGenreId = db.Movies.Where(a => a.GenreId == id && a.Status == Status.NowBooking).ToList();
+            }
+            else
+            {
+                moviesWithGenreId = db.Movies.Where(a => a.Status == Status.NowBooking).ToList();
+            }
+
+            return Json(moviesWithGenreId, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetCinemas()
+        {
+            var cinemas = db.Cinemas.ToList();
+            var positionslist = new SelectList(cinemas, "Id", "FullName");
+            return Json(positionslist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetMovieById(int cinemaid)
+        {
+            var position = db.MoviePositions.Include("Movie").Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).Select(p => p.Movie);
             db.Configuration.ProxyCreationEnabled = false;
             var positionslist = new SelectList(position, "Id", "Title");
-            return positionslist;
+            return Json(positionslist,JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult PickedCity(int id)
+        public JsonResult GetMoviesByIdToTable(int cinemaid, string currentdate)
         {
-            var vm = new HomeViewModel()
-            {
-                //MoviesInPickedCinema = db.Movies.ToList()
-            };
+            var moviepositions = db.MoviePositions.Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).ToList();
+            var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid).ToList();
+            db.Configuration.ProxyCreationEnabled = false;
 
-            return RedirectToAction("Index", vm);
+
+            var positionslist = new List<MoviePosition>();
+            foreach (var position in moviepositions)
+            {
+                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+
+                foreach (var pos in positions)
+                {
+                   if (pos.DateTime.ToString().Substring(0, 10).Replace(".", "-") == currentdate && movieposition.MovieTitle == pos.MoviePosition.Movie.Title)
+                    {
+                        DateTimeAndMovieTypePair datetimewithmovietype = new DateTimeAndMovieTypePair()
+                        {
+                            DateTime = pos.DateTime,
+                            MovieType = pos.MovieType.Name
+                        };
+                        movieposition.DateTimeWithMovieType.Add(datetimewithmovietype);
+                    }
+
+                }
+                if(movieposition.DateTimeWithMovieType.Count !=0)
+                {
+
+                positionslist.Add(movieposition);
+                }
+               
+            }
+            return Json(positionslist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetMovieByIdToTable(int movieid, int cinemaid, string currentdate)
+        {
+            var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
+            var position = db.MoviePositions.Include("Movie").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
+            db.Configuration.ProxyCreationEnabled = false;
+            var positionslist = new List<MoviePosition>();
+                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+
+                foreach (var pos in positions)
+                {
+                    if (pos.DateTime.ToString().Substring(0, 10).Replace(".", "-") == currentdate && movieposition.MovieTitle == pos.MoviePosition.Movie.Title)
+                    {
+                        DateTimeAndMovieTypePair datetimewithmovietype = new DateTimeAndMovieTypePair()
+                        {
+                            DateTime = pos.DateTime,
+                            MovieType = pos.MovieType.Name
+                        };
+                        movieposition.DateTimeWithMovieType.Add(datetimewithmovietype);
+                    }
+
+                }
+            return Json(movieposition, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetMovieTypeById(int movieid,int cinemaid)
+        {
+            var position = db.MoviePositionsDates.Include("MovieType").Include("MoviePosition").Where(a => a.MoviePosition.MovieId == movieid && a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.Movie.Status == Status.NowBooking).Select(p => p.MovieType).Distinct();
+            db.Configuration.ProxyCreationEnabled = false;
+            var positionslist = new SelectList(position, "Id", "Name");
+            return Json(positionslist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetMovieTypeByIdToTable(int movieid, int cinemaid, int movietypeid,string currentdate)
+        {
+            var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
+            var position = db.MoviePositions.Include("Movie").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
+            db.Configuration.ProxyCreationEnabled = false;
+            var positionslist = new List<MoviePosition>();
+            MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+
+            foreach (var pos in positions)
+            {
+                if (pos.DateTime.ToString().Substring(0, 10).Replace(".", "-") == currentdate && movieposition.MovieTitle == pos.MoviePosition.Movie.Title && pos.MovieTypeId == movietypeid)
+                {
+                    DateTimeAndMovieTypePair datetimewithmovietype = new DateTimeAndMovieTypePair()
+                    {
+                        DateTime = pos.DateTime,
+                        MovieType = pos.MovieType.Name
+                    };
+                    movieposition.DateTimeWithMovieType.Add(datetimewithmovietype);
+                }
+
+            }
+            return Json(movieposition, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Contact()

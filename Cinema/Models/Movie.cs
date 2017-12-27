@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Cinema.Models
 {
+    public enum Status
+    {
+        NowBooking, Soon, Hidden
+    };
+
     public class Movie
     {
         public int Id { get; set; }
@@ -38,9 +44,13 @@ namespace Cinema.Models
         public byte[] Photo { get; set; }
         [Display(Name = "Wymagany wiek")]
         public int AgeRestrictionId { get; set; }
+        [Display(Name = "Status")]
+        public Status Status { get; set; }
+        [Display(Name = "Kategoria ID")]
+        public int? GenreId { get; set; }
 
         public AgeRestriction AgeRestriction { get; set; }
-        public virtual ICollection<Genre>Genres { get; set; }
+        //public virtual Genre Genre { get; set; }
         public virtual ICollection<MoviePosition> MoviePositions { get; set; }
     }
 }

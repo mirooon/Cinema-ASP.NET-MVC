@@ -122,11 +122,9 @@ header {
 .navbar icon-bar {
     color: white;
 }
-
-.reservation {
-    margin-top: 50px;
+#ui-datepicker-div {
+    display: none;
 }
-
 .reservation-top {
     text-align: center;
 }
@@ -173,18 +171,22 @@ header {
     background-color: red;
     color: white;
 }
-
-.reservation-table-top .col-lg-3 button {
+.reservation-table-top {
+    margin-bottom:50px;
+}
+.reservation-table-top .button-drop {
     width: 250px;
     text-align: center;
     font-size: 15px;
     color: black;
     background-color: white;
     border-color: black;
+    border-width: 1px;
 }
 
 .reservation-table-top .col-lg-3 {
     text-align: center;
+
 }
 
 .reservation-table-top .dropdown-menu {
@@ -299,7 +301,7 @@ header {
 
 .eventsandnews {
     margin-top: 0px;
-    margin-bottom: 300px;
+    margin-bottom: 30px;
 }
 
 .eventsandnews img {
@@ -512,7 +514,9 @@ footer .group-element a:hover {
 .dropdown-menu {
     width: 50px !important;
 }
-
+.hidden {
+    display: none;
+}
 @media screen and (max-width: 767px) {
     .red-bar {
         height: 1px;

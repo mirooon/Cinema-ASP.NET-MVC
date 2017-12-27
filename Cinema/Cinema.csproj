@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MovieDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,14 +209,52 @@
     <Compile Include="Migrations\201710291048191_Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.Designer.cs">
       <DependentUpon>201710291048191_Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711171655184_Added_MovieTitle_and_MovieDuration_to_MoviePosition.cs" />
+    <Compile Include="Migrations\201711171655184_Added_MovieTitle_and_MovieDuration_to_MoviePosition.Designer.cs">
+      <DependentUpon>201711171655184_Added_MovieTitle_and_MovieDuration_to_MoviePosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171658210_ChangedType_MovieDuration_in_MoviePosition.cs" />
+    <Compile Include="Migrations\201711171658210_ChangedType_MovieDuration_in_MoviePosition.Designer.cs">
+      <DependentUpon>201711171658210_ChangedType_MovieDuration_in_MoviePosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171726438_test.cs" />
+    <Compile Include="Migrations\201711171726438_test.Designer.cs">
+      <DependentUpon>201711171726438_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171755552_test2.cs" />
+    <Compile Include="Migrations\201711171755552_test2.Designer.cs">
+      <DependentUpon>201711171755552_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171836093_AddedMoviePositionDates.cs" />
+    <Compile Include="Migrations\201711171836093_AddedMoviePositionDates.Designer.cs">
+      <DependentUpon>201711171836093_AddedMoviePositionDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712152031297_added_MovieType_to_MoviePositionDates.cs" />
+    <Compile Include="Migrations\201712152031297_added_MovieType_to_MoviePositionDates.Designer.cs">
+      <DependentUpon>201712152031297_added_MovieType_to_MoviePositionDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221501048_Added_Status_To_MovieModel.cs" />
+    <Compile Include="Migrations\201712221501048_Added_Status_To_MovieModel.Designer.cs">
+      <DependentUpon>201712221501048_Added_Status_To_MovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221600384_Add-GenreId_to_MovieModel.cs" />
+    <Compile Include="Migrations\201712221600384_Add-GenreId_to_MovieModel.Designer.cs">
+      <DependentUpon>201712221600384_Add-GenreId_to_MovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221655468_Added_EnglishName_To_Genre.cs" />
+    <Compile Include="Migrations\201712221655468_Added_EnglishName_To_Genre.Designer.cs">
+      <DependentUpon>201712221655468_Added_EnglishName_To_Genre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
     <Compile Include="Models\CinemaPlace.cs" />
+    <Compile Include="Models\ViewModels\DateTimeAndMovieTypePair.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MoviePositionDates.cs" />
     <Compile Include="Models\MovieType.cs" />
     <Compile Include="Models\MoviePosition.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
@@ -223,8 +262,47 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-grid.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-grid.min.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-reboot.min.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-select.css" />
+    <Content Include="Content\css\bootstrap\bootstrap-select.min.css" />
+    <Content Include="Content\css\bootstrap\bootstrap.css" />
+    <Content Include="Content\css\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\css\style2.css" />
+    <Content Include="Content\images\age15_.png" />
+    <Content Include="Content\images\age18_.png" />
+    <Content Include="Content\images\age6_.png" />
+    <Content Include="Content\images\ageBez_Ograniczen.png" />
+    <Content Include="Content\images\ageN_A.png" />
+    <Content Include="Content\images\arthurposter.jpg" />
+    <Content Include="Content\images\calendar.png" />
+    <Content Include="Content\images\calendarblack.png" />
+    <Content Include="Content\images\drugiepiwo.jpg" />
+    <Content Include="Content\images\footer.jpg" />
+    <Content Include="Content\images\king.jpg" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\map_set_icon.png" />
+    <Content Include="Content\images\MECZ.jpg" />
+    <Content Include="Content\images\playicon.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\skyfall.jpg" />
+    <Content Include="Content\images\skyfallposter.jpg" />
+    <Content Include="Content\images\WALLPAPER.jpg" />
+    <Content Include="Content\images\watch.png" />
+    <Content Include="Content\images\xmen.jpg" />
+    <Content Include="Content\images\xmenposter.jpg" />
+    <Content Include="Content\js\bootstrap\bootstrap-select.js" />
+    <Content Include="Content\js\bootstrap\bootstrap-select.min.js" />
+    <Content Include="Content\js\bootstrap\bootstrap.js" />
+    <Content Include="Content\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\js\poster.js" />
+    <Content Include="Content\js\youtubeapi.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,6 +312,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\css\bootstrap\bootstrap-grid.css.map" />
+    <Content Include="Content\css\bootstrap\bootstrap-grid.min.css.map" />
+    <Content Include="Content\css\bootstrap\bootstrap-reboot.css.map" />
+    <Content Include="Content\css\bootstrap\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\css\bootstrap\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -281,6 +369,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MovieDetails\Index.cshtml" />
+    <Content Include="Views\MovieDetails\ShowMovieDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +397,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710291048191_Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.resx">
       <DependentUpon>201710291048191_Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171655184_Added_MovieTitle_and_MovieDuration_to_MoviePosition.resx">
+      <DependentUpon>201711171655184_Added_MovieTitle_and_MovieDuration_to_MoviePosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171658210_ChangedType_MovieDuration_in_MoviePosition.resx">
+      <DependentUpon>201711171658210_ChangedType_MovieDuration_in_MoviePosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171726438_test.resx">
+      <DependentUpon>201711171726438_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171755552_test2.resx">
+      <DependentUpon>201711171755552_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171836093_AddedMoviePositionDates.resx">
+      <DependentUpon>201711171836093_AddedMoviePositionDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712152031297_added_MovieType_to_MoviePositionDates.resx">
+      <DependentUpon>201712152031297_added_MovieType_to_MoviePositionDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221501048_Added_Status_To_MovieModel.resx">
+      <DependentUpon>201712221501048_Added_Status_To_MovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221600384_Add-GenreId_to_MovieModel.resx">
+      <DependentUpon>201712221600384_Add-GenreId_to_MovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221655468_Added_EnglishName_To_Genre.resx">
+      <DependentUpon>201712221655468_Added_EnglishName_To_Genre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

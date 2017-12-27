@@ -13,8 +13,12 @@
     <link href="@Url.Content("https://fonts.googleapis.com/css?family=Nunito&amp;subset=latin-ext")" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/boostrap-select.css")">
     <script src="@Url.Content("~/Content/js/bootstrap/bootstrap-select.js")"></script>
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style.css")">
+    <link rel="stylesheet" type="text/css" media="all"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
     <script src="@Url.Content("~/Content/js/poster.js")"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
  @RenderBody()
 <body>
@@ -65,8 +69,7 @@
 
 </html>
 <script>
-    $(document).ready(function() {
-
+    $(document).ready(function () {
         OnPosterHover();
 
         $(document).on('hidden.bs.modal', '.modal', function() {
