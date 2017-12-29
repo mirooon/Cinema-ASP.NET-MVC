@@ -15,12 +15,11 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Cinema.Context.CinemaDbContext context)
         {
-            SeedRoles(context);
-            SeedUsers(context);
             SeedGenres(context);
             SeedAgesRestriction(context);
             SeedMovieTypes(context);
@@ -32,30 +31,6 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-        }
-        private void SeedRoles(CinemaDbContext context)
-        {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
-
-            if (!roleManager.RoleExists("Admin"))
-            {
-                var role = new IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
-            }
-        }
-
-        private void SeedUsers(CinemaDbContext context)
-        {
-            var store = new UserStore<ApplicationUser>(context);
-            var manager = new UserManager<ApplicationUser>(store);
-            if (!context.Users.Any(u => u.UserName == "Admin"))
-            {
-                var user = new ApplicationUser { UserName = "Admin" };
-                var adminresult = manager.Create(user, "12345678");
-
-                if (adminresult.Succeeded) manager.AddToRole(user.Id, "Admin");
-            }
         }
         private void SeedGenres(CinemaDbContext context)
         {
@@ -138,14 +113,14 @@
             CinemaDbContext db = new CinemaDbContext();
 
             var positions = new List<MoviePositionDates>{
-                new MoviePositionDates { Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,22,11,30,00)},
-                new MoviePositionDates { Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,22,12,30,00)},
-                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,22,13,30,00) },
-                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2017,12,22,17,30,00) },
-                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2017,12,22,22,30,00) },
-                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2017,12,22,10,30,00) },
-                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2017,12,22,13,30,00) },
-                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2017,12,22,14,30,00) },
+                new MoviePositionDates { Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,11,30,00)},
+                new MoviePositionDates { Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,12,30,00)},
+                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,13,30,00) },
+                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2017,12,27,17,30,00) },
+                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2017,12,27,22,30,00) },
+                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2017,12,27,10,30,00) },
+                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2017,12,27,13,30,00) },
+                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2017,12,27,14,30,00) },
             };
             positions.ForEach(d => context.MoviePositionsDates.AddOrUpdate(a => a.Id,d));
             context.SaveChanges();

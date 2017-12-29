@@ -1,4 +1,5 @@
 ﻿using Cinema.Context;
+using Cinema.CustomAttributes;
 using Cinema.Models;
 using Cinema.Models.ViewModels;
 using Newtonsoft.Json;
@@ -30,6 +31,7 @@ namespace Cinema.Controllers
             
             return View(vm);
         }
+        [AjaxChildActionOnly]
         public JsonResult ShowGenre(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -45,12 +47,14 @@ namespace Cinema.Controllers
 
             return Json(moviesWithGenreId, JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetCinemas()
         {
             var cinemas = db.Cinemas.ToList();
             var positionslist = new SelectList(cinemas, "Id", "FullName");
             return Json(positionslist, JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetMovieById(int cinemaid)
         {
             var position = db.MoviePositions.Include("Movie").Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).Select(p => p.Movie);
@@ -58,6 +62,7 @@ namespace Cinema.Controllers
             var positionslist = new SelectList(position, "Id", "Title");
             return Json(positionslist,JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetMoviesByIdToTable(int cinemaid, string currentdate)
         {
             var moviepositions = db.MoviePositions.Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).ToList();
@@ -92,6 +97,7 @@ namespace Cinema.Controllers
             }
             return Json(positionslist, JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetMovieByIdToTable(int movieid, int cinemaid, string currentdate)
         {
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
@@ -115,6 +121,7 @@ namespace Cinema.Controllers
                 }
             return Json(movieposition, JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetMovieTypeById(int movieid,int cinemaid)
         {
             var position = db.MoviePositionsDates.Include("MovieType").Include("MoviePosition").Where(a => a.MoviePosition.MovieId == movieid && a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.Movie.Status == Status.NowBooking).Select(p => p.MovieType).Distinct();
@@ -122,6 +129,7 @@ namespace Cinema.Controllers
             var positionslist = new SelectList(position, "Id", "Name");
             return Json(positionslist, JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
         public JsonResult GetMovieTypeByIdToTable(int movieid, int cinemaid, int movietypeid,string currentdate)
         {
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
