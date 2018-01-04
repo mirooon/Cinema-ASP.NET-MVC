@@ -10,7 +10,7 @@ namespace Cinema.Models
     {
         [Display(Name = "Id")]
         public int Id { get; set; }
-        [Display(Name = "Nazwa typu filmu")]
+        [Display(Name = "Typ filmu")]
         [MaxLength(20)]
         public string Name { get; set; }
         public ICollection<Movie>Movies { get; set; }

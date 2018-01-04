@@ -35,12 +35,8 @@ namespace Cinema.Controllers
         public JsonResult ShowGenre(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var moviesWithGenreId = db.Movies.Where(a => a.GenreId == 1).ToList();
-            if(id != 1)
-            {
-                moviesWithGenreId = db.Movies.Where(a => a.GenreId == id && a.Status == Status.NowBooking).ToList();
-            }
-            else
+            var moviesWithGenreId = db.Movies.Where(a => a.GenreId == id && a.Status == Status.NowBooking).ToList();
+            if (id == 0)
             {
                 moviesWithGenreId = db.Movies.Where(a => a.Status == Status.NowBooking).ToList();
             }

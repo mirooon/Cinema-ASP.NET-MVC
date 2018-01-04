@@ -4,31 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MironCinema - Logowanie</title>
-        <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
-        <script src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
-        <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
-
+    <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
+    <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/panel.css")">
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="@Url.Action("Index","Home")"><i class="fa fa-home fa-fw"></i>Podgląd</a></li>
-                    <li><a href="#">Kina</a></li>
-                    <li><a href="#">Filmy</a></li>
-                    <li><a href="#">Wydarzenia</a></li>
-                    <li><a href="#">Nowości</a></li>
-                    <li><a href="#">Banery</a></li>
-                    <li><a href="#">Gatunki</a></li>
-                    <li><a href="#">Moderatorzy</a></li>
-                    <li><a href="#">Rezerwacje</a></li>
-                    <li><a href="#">Dodatkowe informacje</a></li>
-                </ul>
-            </div>
-            <div class="col-md-9 well">
-                @RenderBody()
+        <div class="row" style="padding-top:50px">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <div class="list-group list-group-horizontal">
+                    <a href="@Url.Action("Index","Home")" class="list-group-item active">Podgląd</a>
+                    <a href="@Url.Action("Index","Home")" class="list-group-item">Kina</a>
+                    <a href="@Url.Action("Index","Movies")" class="list-group-item">Filmy</a>
+                    <a href="@Url.Action("Index","Genres")" class="list-group-item">Kategorie</a>
+                    <a href="@Url.Action("Index","Repertoire")" class="list-group-item">Repertuar</a>
+                    <a href="@Url.Action("Index","")" class="list-group-item">Wydarzenia</a>
+                    <a href="@Url.Action("Index","Home")" class="list-group-item">Nowości</a>
+                    <a href="@Url.Action("Index","Home")" class="list-group-item">Dodatkowe informacje</a>
+                </div>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+            <div class="col-md-12 well">
+                @RenderBody()
+            </div>
+        </div>
+    </body>
 </html>

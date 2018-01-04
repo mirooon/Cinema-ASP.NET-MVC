@@ -191,9 +191,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\CinemaDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieDetailsController.cs" />
+    <Compile Include="Controllers\MoviePositionDatesController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\PanelController.cs" />
+    <Compile Include="Controllers\RepertoireController.cs" />
     <Compile Include="CustomAttributes\AjaxChildActionOnlyAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +251,10 @@
     <Compile Include="Migrations\201712221655468_Added_EnglishName_To_Genre.Designer.cs">
       <DependentUpon>201712221655468_Added_EnglishName_To_Genre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712311133270_Added_EnglishName_To_AgeRestriction.cs" />
+    <Compile Include="Migrations\201712311133270_Added_EnglishName_To_AgeRestriction.Designer.cs">
+      <DependentUpon>201712311133270_Added_EnglishName_To_AgeRestriction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
@@ -259,10 +268,18 @@
     <Compile Include="Models\MovieType.cs" />
     <Compile Include="Models\MoviePosition.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Cinema.dll" />
+    <Content Include="bin\Cinema.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -276,8 +293,7 @@
     <Content Include="Content\css\bootstrap\bootstrap.css" />
     <Content Include="Content\css\bootstrap\bootstrap.min.css" />
     <Content Include="Content\css\login.css" />
-    <Content Include="Content\css\panel\metisMenu.min.css" />
-    <Content Include="Content\css\panel\sb-admin-2.css" />
+    <Content Include="Content\css\panel.css" />
     <Content Include="Content\css\style2.css" />
     <Content Include="Content\images\age15_.png" />
     <Content Include="Content\images\age18_.png" />
@@ -311,6 +327,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Release\Cinema.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\Cinema.dll" />
+    <Content Include="obj\Release\Cinema.pdb" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -326,6 +345,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="obj\Release\Cinema.csproj.CopyComplete" />
+    <Content Include="obj\Release\Cinema.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Release\Cinema.csproj.GenerateResource.Cache" />
+    <Content Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -377,10 +400,29 @@
     <Content Include="Views\Shared\_BackdoorLayout.cshtml" />
     <Content Include="Views\Panel\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Movies\Create.cshtml" />
+    <Content Include="Views\Movies\Delete.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Repertoire\Create.cshtml" />
+    <Content Include="Views\Repertoire\Delete.cshtml" />
+    <Content Include="Views\Repertoire\Index.cshtml" />
+    <Content Include="Views\Repertoire\Terms.cshtml" />
+    <Content Include="Views\Repertoire\CreateTerm.cshtml" />
+    <Content Include="Views\Repertoire\DeleteTerm.cshtml" />
+    <Content Include="Views\MoviePositionDates\Details.cshtml" />
+    <Content Include="Views\Repertoire\EditTerm.cshtml" />
+    <Content Include="Views\MoviePositionDates\Index.cshtml" />
+    <Content Include="Views\Genres\Create.cshtml" />
+    <Content Include="Views\Genres\Delete.cshtml" />
+    <Content Include="Views\Genres\Edit.cshtml" />
+    <Content Include="Views\Genres\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\panel\" />
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -432,6 +474,12 @@
     <EmbeddedResource Include="Migrations\201712221655468_Added_EnglishName_To_Genre.resx">
       <DependentUpon>201712221655468_Added_EnglishName_To_Genre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712311133270_Added_EnglishName_To_AgeRestriction.resx">
+      <DependentUpon>201712311133270_Added_EnglishName_To_AgeRestriction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Release\Cinema.Migrations.Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.resources" />
+    <EmbeddedResource Include="obj\Release\Cinema.Migrations.Initialization.resources" />
+    <EmbeddedResource Include="obj\Release\Cinema.Migrations.Initialization2.resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -364,9 +364,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <button onclick=ShowGenre(0) name="button" class="btn btn-default btn-responsive">Wszystkie</button>
                                 @foreach (var genre in Model.Genres)
-                {
-                    <button onclick=ShowGenre(@genre.Id) name="button" class="btn btn-default btn-responsive">@genre.Name</button>
+    {
+                            <button onclick=ShowGenre(@genre.Id) name="button" class="btn btn-default btn-responsive">@genre.Name</button>
 }
                             </div>
                         </div>

@@ -1,0 +1,40 @@
+﻿@model Cinema.Models.MoviePosition
+
+@{
+    ViewBag.Title = "Usuwanie pozycji";
+    Layout = "~/Views/Shared/_BackdoorLayout.cshtml";
+}
+
+<h2>Usuwanie pozycji</h2>
+
+<h3>Czy na pewno chcesz usunąć tą pozycję?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cinema.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cinema.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć do listy", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Cinema.Models.MoviePosition>
+
+@{
+    ViewBag.Title = "Pozycje filmów w kinach";
+    Layout = "~/Views/Shared/_BackdoorLayout.cshtml";
+}
+
+<h2>Pozycje filmów w kinach</h2>
+
+<p>
+    @Html.ActionLink("Utwórz nowy", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cinema.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cinema.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Terminy odtwarzania filmu", "Terms", new { id=item.Id }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

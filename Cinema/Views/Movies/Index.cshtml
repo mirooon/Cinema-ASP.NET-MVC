@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Cinema.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BackdoorLayout.cshtml";
+}
+
+<h2>Lista filmów</h2>
+
+<p>
+    @Html.ActionLink("Utwórz nowy", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AgeRestriction.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OryginalTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cast)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Production)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Premiere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrailerLinkYoutube)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgeRestriction.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OryginalTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cast)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Production)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Premiere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrailerLinkYoutube)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id })
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.Id })
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -222,6 +222,7 @@ header {
 .newandsoon {
     background-color: black;
     padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .active {

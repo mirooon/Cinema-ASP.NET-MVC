@@ -9,7 +9,12 @@ namespace Cinema.Models
 {
     public enum Status
     {
-        NowBooking, Soon, Hidden
+        [Display(Name = "Na Ekranie")]
+        NowBooking,
+        [Display(Name = "Wkrótce")]
+        Soon,
+        [Display(Name = "Ukryte")]
+        Hidden
     };
 
     public class Movie
@@ -46,11 +51,11 @@ namespace Cinema.Models
         public int AgeRestrictionId { get; set; }
         [Display(Name = "Status")]
         public Status Status { get; set; }
-        [Display(Name = "Kategoria ID")]
+        [Display(Name = "Kategoria")]
         public int? GenreId { get; set; }
 
         public AgeRestriction AgeRestriction { get; set; }
-        //public virtual Genre Genre { get; set; }
+        public Genre Genre { get; set; }
         public virtual ICollection<MoviePosition> MoviePositions { get; set; }
     }
 }

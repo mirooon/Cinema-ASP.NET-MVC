@@ -35,17 +35,16 @@
         private void SeedGenres(CinemaDbContext context)
         {
             var genres = new List<Genre>{
-                new Genre { Id = 1, EnglishName = "All", Name = "Wszystkie" },
-                new Genre { Id = 2, EnglishName = "Action" , Name = "Akcja"},
-                new Genre { Id = 3, EnglishName = "Biographical", Name = "Biograficzne" },
-                new Genre { Id = 4, EnglishName = "Documentary", Name = "Dokumentalne" },
-                new Genre { Id = 5, EnglishName = "Drama", Name = "Dramat" },
-                new Genre { Id = 6, EnglishName = "Family", Name = "Familijne" },
-                new Genre { Id = 7, EnglishName = "Horror", Name = "Horror" },
-                new Genre { Id = 8, EnglishName = "Comedy" , Name = "Komedie"},
-                new Genre { Id = 9, EnglishName = "Musical", Name = "Musical" },
-                new Genre { Id = 10, EnglishName = "Sci-Fi" , Name = "Sci-Fi"},
-                new Genre { Id = 11, EnglishName = "Thriller", Name = "Thriller" }
+                new Genre { Id = 1, EnglishName = "Action" , Name = "Akcja"},
+                new Genre { Id = 2, EnglishName = "Biographical", Name = "Biograficzne" },
+                new Genre { Id = 3, EnglishName = "Documentary", Name = "Dokumentalne" },
+                new Genre { Id = 4, EnglishName = "Drama", Name = "Dramat" },
+                new Genre { Id = 5, EnglishName = "Family", Name = "Familijne" },
+                new Genre { Id = 6, EnglishName = "Horror", Name = "Horror" },
+                new Genre { Id = 7, EnglishName = "Comedy" , Name = "Komedie"},
+                new Genre { Id = 8, EnglishName = "Musical", Name = "Musical" },
+                new Genre { Id = 9, EnglishName = "Sci-Fi" , Name = "Sci-Fi"},
+                new Genre { Id = 10, EnglishName = "Thriller", Name = "Thriller" }
             };
             genres.ForEach(g => context.Genres.AddOrUpdate(p => p.Name, g));
             context.SaveChanges();
@@ -53,11 +52,11 @@
         private void SeedAgesRestriction(CinemaDbContext context)
         {
             var ages = new List<AgeRestriction>{
-                new AgeRestriction { Id = 1, Name = "Age6+" },
-                new AgeRestriction { Id = 2, Name = "Age15+" },
-                new AgeRestriction { Id = 3, Name = "Age18+" },
-                new AgeRestriction { Id = 4, Name = "AgeNoLimit" },
-                new AgeRestriction { Id = 5, Name = "AgeNA" },  // NA -> Not Available
+                new AgeRestriction { Id = 1, Name = "Wiek 6+", EnglishName = "Age 6+" },
+                new AgeRestriction { Id = 2, Name = "Wiek 15+", EnglishName = "Age 15+" },
+                new AgeRestriction { Id = 3, Name = "Wiek 18+", EnglishName = "Age 18+" },
+                new AgeRestriction { Id = 4, Name = "Brak ograniczeń wiekowych", EnglishName = "Age NoLimit" },
+                new AgeRestriction { Id = 5, Name = "Wiek nieznany", EnglishName = "Age NA" },  // NA -> Not Available
             };
             ages.ForEach(g => context.AgesRestriction.AddOrUpdate(g));
             context.SaveChanges();
