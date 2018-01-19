@@ -8,7 +8,7 @@
 <h2>Utwórz</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(new { enctype = "multipart/form-data" } ))
 {
     @Html.AntiForgeryToken()
     
@@ -89,10 +89,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImagePath,"Plakat", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+               <input type="file" enctype="multipart/form-data" name="movie.ImageFile" required />
             </div>
         </div>
 

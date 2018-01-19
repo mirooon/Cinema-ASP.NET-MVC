@@ -255,6 +255,10 @@
     <Compile Include="Migrations\201712311133270_Added_EnglishName_To_AgeRestriction.Designer.cs">
       <DependentUpon>201712311133270_Added_EnglishName_To_AgeRestriction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.cs" />
+    <Compile Include="Migrations\201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.Designer.cs">
+      <DependentUpon>201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
@@ -300,7 +304,6 @@
     <Content Include="Content\images\age6_.png" />
     <Content Include="Content\images\ageBez_Ograniczen.png" />
     <Content Include="Content\images\ageN_A.png" />
-    <Content Include="Content\images\arthurposter.jpg" />
     <Content Include="Content\images\calendar.png" />
     <Content Include="Content\images\calendarblack.png" />
     <Content Include="Content\images\drugiepiwo.jpg" />
@@ -316,7 +319,6 @@
     <Content Include="Content\images\WALLPAPER.jpg" />
     <Content Include="Content\images\watch.png" />
     <Content Include="Content\images\xmen.jpg" />
-    <Content Include="Content\images\xmenposter.jpg" />
     <Content Include="Content\js\bootstrap\bootstrap-select.js" />
     <Content Include="Content\js\bootstrap\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
@@ -476,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712311133270_Added_EnglishName_To_AgeRestriction.resx">
       <DependentUpon>201712311133270_Added_EnglishName_To_AgeRestriction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.resx">
+      <DependentUpon>201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.resources" />
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Initialization.resources" />

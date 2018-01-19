@@ -23,7 +23,10 @@ namespace Cinema.Models
         public int PostCode { get; set; }
         [NotMapped]
         public string FullName { get { return City + " - " + Name; } }
-        public byte[] Photo { get; set; }
+        public string ImagePath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
         public ICollection<MoviePosition>MoviePositions { get; set; }
     }
 }

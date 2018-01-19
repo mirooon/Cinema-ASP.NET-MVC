@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,10 +51,16 @@ namespace Cinema.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,OryginalTitle,Cast,Director,Production,Premiere,Duration,Description,TrailerLinkYoutube,Photo,AgeRestrictionId,Status,GenreId")] Movie movie)
+        public ActionResult Create([Bind(Include = "Id,Title,OryginalTitle,Cast,Director,Production,Premiere,Duration,Description,TrailerLinkYoutube,ImagePath,AgeRestrictionId,Status,GenreId,ImageFile")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                    string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
+                    string extension = Path.GetExtension(movie.ImageFile.FileName);
+                    filename = filename + DateTime.Now.ToString() + extension;
+                    movie.ImagePath = "~/Content/images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
+                    movie.ImageFile.SaveAs(filename);
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,10 +93,16 @@ namespace Cinema.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,OryginalTitle,Cast,Director,Production,Premiere,Duration,Description,TrailerLinkYoutube,Photo,AgeRestrictionId,Status,GenreId")] Movie movie)
+        public ActionResult Edit([Bind(Include = "Id,Title,OryginalTitle,Cast,Director,Production,Premiere,Duration,Description,TrailerLinkYoutube,ImagePath,AgeRestrictionId,Status,GenreId,ImageFile")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
+                string extension = Path.GetExtension(movie.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                movie.ImagePath = "~/Content/images/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
+                movie.ImageFile.SaveAs(filename);
                 db.Entry(movie).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

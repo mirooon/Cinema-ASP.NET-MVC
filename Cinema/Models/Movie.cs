@@ -46,7 +46,7 @@ namespace Cinema.Models
         [Display(Name = "Link do trailera na platformie YouTube")]
         public string TrailerLinkYoutube { get; set; }
         [Display(Name = "Plakat")]
-        public byte[] Photo { get; set; }
+        public string ImagePath { get; set; }
         [Display(Name = "Wymagany wiek")]
         public int AgeRestrictionId { get; set; }
         [Display(Name = "Status")]
@@ -54,6 +54,8 @@ namespace Cinema.Models
         [Display(Name = "Kategoria")]
         public int? GenreId { get; set; }
 
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
         public AgeRestriction AgeRestriction { get; set; }
         public Genre Genre { get; set; }
         public virtual ICollection<MoviePosition> MoviePositions { get; set; }
