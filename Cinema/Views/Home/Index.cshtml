@@ -117,17 +117,24 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active">
-                    <img src="@Url.Content("~/Content/images/king.jpg")" alt="King Arthur">
+                @{
+                    var i = 0;
+                foreach (var banner in Model.Banners)
+                {
+                    var itemClass = i++ == 0 ? "item active" : "item";
+                <div class="@itemClass">
+                    <img src="@Url.Content(banner.ImagePath)" alt="@banner.Name">
                 </div>
 
-                <div class="item">
+                }
+                    }
+                @*<div class="item">
                     <img src="@Url.Content("~/Content/images/skyfall.jpg")" alt="Skyfall">
                 </div>
 
                 <div class="item">
                     <img src="@Url.Content("~/Content/images/xmen.jpg")" alt="X-Men">
-                </div>
+                </div>*@
             </div>
 
             <!-- Left and right controls -->
@@ -382,7 +389,7 @@
                     <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
                         <div class="image">
                             <div class="posterimg">
-                                <img src="@Url.Content(movie.ImagePath)" width="220" height="324">
+                                <img src="@Url.Content(movie.ImagePath.Substring(1))" width="220" height="324">
                             </div>
                             <div class="overlaydetails">
                                 <div class="categoriesbuttons">
@@ -434,7 +441,7 @@
                         <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
                             <div class="image">
                                 <div class="posterimg">
-                                    <img src="@Url.Content("~/Content/images/skyfallposter.jpg")" width="220" height="324">
+                                    <img src="@movie.ImagePath.Substring(1)" width="220" height="324">
                                 </div>
                                 <div class="overlaydetails">
                                     <div class="categoriesbuttons">
@@ -579,6 +586,7 @@
     var selectedMovieID = $("#MovieID :selected").val();
     var selectedMovieTypeID = $("#TypeID :selected").val();
     var selectedDate;
+
     $(document).ready(function () {
         $("#Reservation").hide().removeClass("hidden");
         OnStart();
@@ -825,7 +833,7 @@
                         $.each(data, function (index, value) {
                             var indexerOfVideoId = value.TrailerLinkYoutube.lastIndexOf('v=');
                             amountOfPosters++;
-                            posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><div class="poster" data-poster-id="' + value.Id + '" data-poster-trailer="' + value.TrailerLinkYoutube.substring(indexerOfVideoId + 2) + '"><div class="image"><div class="posterimg"><img src="@Url.Content("~/Content/images/skyfallposter.jpg")" width="220" height="324"></div><div class="overlaydetails"><div class="categoriesbuttons"><button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button></div></div><div class="overlayplayicon"><img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal"></div><div class="postertitle"><p>' +value.Title+'</p></div></div></div>')
+                            posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><div class="poster" data-poster-id="' + value.Id + '" data-poster-trailer="' + value.TrailerLinkYoutube.substring(indexerOfVideoId + 2) + '"><div class="image"><div class="posterimg"><img src="' + value.ImagePath.substring(1) + '" width="220" height="324"></div><div class="overlaydetails"><div class="categoriesbuttons"><button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button></div></div><div class="overlayplayicon"><img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal"></div><div class="postertitle"><p>' + value.Title + '</p></div></div></div>')
                         });
                         if (amountOfPosters == 0) {
                             posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><h1 style="color:white;">Brak</h1></div>');

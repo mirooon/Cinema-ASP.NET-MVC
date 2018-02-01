@@ -26,7 +26,8 @@ namespace Cinema.Controllers
             {
                 MovieNowBooking = db.Movies.Where(a => a.Status == Status.NowBooking),
                 MovieSoon = db.Movies.Where(a => a.Status == Status.Soon),
-                Genres = db.Genres
+                Genres = db.Genres,
+                Banners = db.Banners
             };
             
             return View(vm);

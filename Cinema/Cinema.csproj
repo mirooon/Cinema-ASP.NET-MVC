@@ -191,6 +191,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\CinemaDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BannersController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -259,9 +260,18 @@
     <Compile Include="Migrations\201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.Designer.cs">
       <DependentUpon>201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801191253355_AddedBanners.cs" />
+    <Compile Include="Migrations\201801191253355_AddedBanners.Designer.cs">
+      <DependentUpon>201801191253355_AddedBanners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801191414410_AddedImageNameToBannerModel.cs" />
+    <Compile Include="Migrations\201801191414410_AddedImageNameToBannerModel.Designer.cs">
+      <DependentUpon>201801191414410_AddedImageNameToBannerModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
+    <Compile Include="Models\Banner.cs" />
     <Compile Include="Models\CinemaPlace.cs" />
     <Compile Include="Models\ViewModels\DateTimeAndMovieTypePair.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -420,6 +430,10 @@
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Genres\Edit.cshtml" />
     <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Banners\Create.cshtml" />
+    <Content Include="Views\Banners\Delete.cshtml" />
+    <Content Include="Views\Banners\Edit.cshtml" />
+    <Content Include="Views\Banners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -481,6 +495,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.resx">
       <DependentUpon>201801111623335_ReplacePhotoRecordWithImagePathInCinemaPlaceAndMovieModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801191253355_AddedBanners.resx">
+      <DependentUpon>201801191253355_AddedBanners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801191414410_AddedImageNameToBannerModel.resx">
+      <DependentUpon>201801191414410_AddedImageNameToBannerModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.resources" />
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Initialization.resources" />

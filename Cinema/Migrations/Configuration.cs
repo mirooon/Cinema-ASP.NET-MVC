@@ -27,6 +27,7 @@
             SeedMovies(context);
             SeedPositions(context);
             SeedPositionsDates(context);
+            SeedBanners(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -122,6 +123,19 @@
                 new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2017,12,27,14,30,00) },
             };
             positions.ForEach(d => context.MoviePositionsDates.AddOrUpdate(a => a.Id,d));
+            context.SaveChanges();
+        }
+        private void SeedBanners(CinemaDbContext context)
+        {
+            CinemaDbContext db = new CinemaDbContext();
+
+            var positions = new List<Banner>{
+                new Banner {Id=1, Name="King Arthur", ImagePath="~/Content/images/king.jpg", ImageName="king.jpg"},
+                new Banner {Id=2, Name="X-Men", ImagePath="~/Content/images/xmen.jpg",ImageName="xmen.jpg"},
+                new Banner {Id=3, Name="Skyfall", ImagePath="~/Content/images/skyfall.jpg",ImageName="skyfall.jpg"}
+
+            };
+            positions.ForEach(d => context.Banners.AddOrUpdate(a => a.Id, d));
             context.SaveChanges();
         }
     }

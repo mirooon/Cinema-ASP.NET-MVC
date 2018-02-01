@@ -11,5 +11,6 @@ namespace Cinema.Models.ViewModels
         public IEnumerable<Movie> MovieNowBooking { get; set; }
         public IEnumerable<Movie> MovieSoon { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<Banner> Banners { get; set; }
     }
 }

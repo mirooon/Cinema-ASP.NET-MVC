@@ -27,6 +27,7 @@ namespace Cinema.Context
         public DbSet<MovieType> MovieTypes { get; set; }
         public DbSet<MoviePosition> MoviePositions { get; set; }
         public DbSet<MoviePositionDates> MoviePositionsDates { get; set; }
+        public DbSet<Banner>Banners { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

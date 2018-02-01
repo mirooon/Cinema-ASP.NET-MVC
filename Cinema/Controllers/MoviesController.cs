@@ -55,14 +55,20 @@ namespace Cinema.Controllers
         {
             if (ModelState.IsValid)
             {
-                    string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
+                if (movie.ImageFile != null && movie.ImageFile.ContentLength > 0)
+                {
+                    int cos = movie.ImageFile.ContentLength;
+                string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
                     string extension = Path.GetExtension(movie.ImageFile.FileName);
-                    filename = filename + DateTime.Now.ToString() + extension;
+                    Guid filenameNumbers = new Guid();
+                    filename = filename + filenameNumbers + extension;
                     movie.ImagePath = "~/Content/images/" + filename;
                     filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
                     movie.ImageFile.SaveAs(filename);
                 db.Movies.Add(movie);
                 db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -97,15 +103,19 @@ namespace Cinema.Controllers
         {
             if (ModelState.IsValid)
             {
-                string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
-                string extension = Path.GetExtension(movie.ImageFile.FileName);
-                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                movie.ImagePath = "~/Content/images/" + filename;
-                filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
-                movie.ImageFile.SaveAs(filename);
-                db.Entry(movie).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (movie.ImageFile != null && movie.ImageFile.ContentLength > 0)
+                {
+                    string filename = Path.GetFileNameWithoutExtension(movie.ImageFile.FileName);
+                    string extension = Path.GetExtension(movie.ImageFile.FileName);
+                    Guid filenameNumbers = new Guid();
+                    filename = filename + filenameNumbers + extension;
+                    movie.ImagePath = "~/Content/images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
+                    movie.ImageFile.SaveAs(filename);
+                    db.Entry(movie).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                    return RedirectToAction("Index");
             }
             ViewBag.AgeRestrictionId = new SelectList(db.AgesRestriction, "Id", "Name", movie.AgeRestrictionId);
             ViewBag.GenreId = new SelectList(db.Genres, "Id", "Name", movie.GenreId);
@@ -124,6 +134,7 @@ namespace Cinema.Controllers
             {
                 return HttpNotFound();
             }
+            System.IO.File.Delete(Path.Combine(Server.MapPath(movie.ImagePath)));
             return View(movie);
         }
 
