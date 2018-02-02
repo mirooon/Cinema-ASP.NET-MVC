@@ -71,7 +71,7 @@
 </html>
 <script>
     $(document).ready(function () {
-        OnPosterHover();
+       OnPosterHover();
 
         $(document).on('hidden.bs.modal', '.modal', function() {
             player.stopVideo();
@@ -79,21 +79,20 @@
     });
 
     function OnPosterHover() {
-        $('.poster').hover(
-            function() {
-                var linkToTrailer = $(this).attr('data-poster-trailer');
-                linkToTrailerPlay = linkToTrailer;
-                OnPosterGrayWithBorder($(this));
-                OnPosterBottomDetails($(this));
-                OnPosterTextColorChange($(this));
-                OnPosterPlayIcon($(this));
-            },
-            function() {
-                OffPosterGrayWithBorder($(this));
-                OffPosterBottomDetails($(this));
-                OffPosterTextColorChange($(this));
-                OffPosterPlayIcon($(this));
-            }
-        );
+
+        $(document).on('mouseover', '.poster', function () {
+            var linkToTrailer = $(this).attr('data-poster-trailer');
+            linkToTrailerPlay = linkToTrailer;
+            OnPosterGrayWithBorder($(this));
+            OnPosterBottomDetails($(this));
+            OnPosterTextColorChange($(this));
+            OnPosterPlayIcon($(this));
+        });
+        $(document).on('mouseout', '.poster', function () {
+            OffPosterGrayWithBorder($(this));
+            OffPosterBottomDetails($(this));
+            OffPosterTextColorChange($(this));
+            OffPosterPlayIcon($(this));
+        });
     }
 </script>

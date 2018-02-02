@@ -586,8 +586,9 @@
     var selectedMovieID = $("#MovieID :selected").val();
     var selectedMovieTypeID = $("#TypeID :selected").val();
     var selectedDate;
+        
+        $(document).ready(function () {
 
-    $(document).ready(function () {
         $("#Reservation").hide().removeClass("hidden");
         OnStart();
         $("#CinemaID").change(function () {
@@ -844,4 +845,5 @@
                     }
                 });
         }
+        
     </script>

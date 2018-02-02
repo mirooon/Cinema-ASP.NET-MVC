@@ -1,8 +1,12 @@
+
+
 function OnPosterGrayWithBorder(event) {
     event.find('.posterimg').find('img')
         .css('filter', 'grayscale(100%)')
         .css('border', '2px solid');
 }
+
+
 
 function OffPosterGrayWithBorder(event) {
     event.find('.posterimg').find('img')
