@@ -1,8 +1,143 @@
 ﻿@model Cinema.Models.Movie
 @{
-    ViewBag.Title = "ShowMovieDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Szczegóły filmu" + Model.Title;
+    
 }
 
-<h2>@Model.Id</h2>
+
+<body>
+    
+    <div class="container ">
+        <div class="moviedetails_trailer_section ">
+            <div class="row " style="margin-bottom: 20px; ">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-uppercase ">
+                    @Model.Title <img src="@Url.Content(Model.AgeRestriction.ImagePath)">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-uppercase ">
+                    <button type="button" class="btn btn-primary ">REZERWUJ</button>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-lg-12 ">
+                    <div id="player" class="iframe"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footerline ">
+        <hr>
+    </div>
+    <div class="blackbackground ">
+        <div class="container ">
+            <div class="moviedetails_desc_section ">
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase h1 ">
+                        WIĘCEJ O @Model.Title
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                            <div class="row h3 text-center ">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                                    <img src="@Url.Content("~/Content/images/calendar.png")" style="height: 64px; width:64px; ">
+                                    <p style="font-weight: bold; ">PREMIERA:</p>@Model.Premiere.ToString().Substring(0,10)
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                                    <img src="@Url.Content("~/Content/images/watch.png")" style="height: 64px; width:64px; ">
+                                    <p style="font-weight: bold; ">CZAS TRWANIA:</p>@Model.Duration min
+                                </div>
+                            </div>
+                            <div class="row h4 ">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-top:30px; ">
+                                    <p>@Model.Description</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                                    <table class="table table-condensed ">
+                                        <tbody>
+                                            <tr>
+                                                <td>TYTUŁ ORYGINALNY:</td>
+                                                <td>@Model.OryginalTitle</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GATUNEK FILMU:</td>
+                                                <td>@Model.Genre.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OBSADA:</td>
+                                                <td>@Model.Cast</td>
+                                            </tr>
+                                            <tr>
+                                                <td>REŻYSER:</td>
+                                                <td>@Model.Director</td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRODUKCJA:</td>
+                                                <td>@Model.Production</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OGRANICZENIA WIEKOWE:</td>
+                                                <td>@Model.AgeRestriction.Name</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                            <img src="@Url.Content(Model.ImagePath)" width="300" height="445">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footerline ">
+        <hr>
+    </div>
+    <div class="container ">
+        <div class="moviedetails_reservation ">
+            <div class="reservation-top">
+                <div class="row ">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-primary active ">DZIŚ</button>
+                            <button type="button" class="btn btn-primary ">PT</button>
+                            <button type="button" class="btn btn-primary ">SO</button>
+                            <button type="button" class="btn btn-primary ">ND</button>
+                            <button type="button" class="btn btn-primary ">PN</button>
+                            <button type="button" class="btn btn-primary ">WT</button>
+                            <button type="button" class="btn btn-primary ">ŚR</button>
+                            <button type="button" class="btn btn-primary "><img src="@Url.Content("~/Content/images/calendarblack.png")" style="height: 24px; width:24px; "></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ">
+                        <select class="selectpicker" data-live-search="true" title="Wybierz miasto">
+                            <option data-tokens="1">BYDGOSZCZ</option>
+                            <option data-tokens="2">WARSZAWA</option>
+                            <option data-tokens="3">WROCŁAW</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 ">
+                        <select class="selectpicker" data-live-search="true" title="Więcej">
+                            <option class="selected active">WSZYSTKIE</option>
+                            <optgroup label="Typ seansu">
+                                <option>2D</option>
+                                <option>3D</option>
+                            </optgroup>
+                            <optgroup label="Gatunek">
+                                <option>Akcja</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
 

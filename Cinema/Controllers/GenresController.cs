@@ -11,6 +11,7 @@ using Cinema.Models;
 
 namespace Cinema.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GenresController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();

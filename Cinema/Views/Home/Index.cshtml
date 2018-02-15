@@ -1,111 +1,6 @@
 ﻿@model Cinema.Models.ViewModels.HomeViewModel   
-<header>
-        <div class="navbar navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- LOGO PO SRODKU -->
-                    <!-- <div class="navbar-brand-center">-->
-                    <div class="navbar-brand">
-                        <a><img id="logologologo" src="@Url.Content("~/Content/images/logo.png")" alt="Cinema"></a>
-                    </div>
-                    <!--</div>-->
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".HeaderCollapse">
-                        <span>MENU</span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse HeaderCollapse">
 
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li>
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#"><img src="@Url.Content("~/Content/images/map_set_icon.png")" height="20" class="mr-xs"> Wybierz kino </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="navbar-button-border">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="text" placeholder="Szukaj... " aria-label="Search">
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="navbar-button" id="chooseLang">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">PL  <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">PL</a></li>
-                                        <li><a href="#">EN</a></li>
-                                        <li><a href="#">DE</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">REPERTUAR </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">OFERTY </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="hidden-sm hidden-md hidden-lg hidden-xl">
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">NASZE KINA </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
-    <section class="red-bar">
-        <div class="navbar-red navbar-static-top navbar-li">
-            <div class="container">
-                <div class="collapse navbar-collapse">
-
-                    <ul class="hidden-xs nav navbar-nav navbar-center">
-
-                        <li>
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">REPERTUAR </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">OFERTY </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="navbar-button">
-                                <div class="navbar-button-border">
-                                    <a href="#">NASZE KINA </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-
-                </div>
-            </div>
-        </div>
-    </section>
+   
     <div class="container-fluid">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -393,7 +288,7 @@
                             </div>
                             <div class="overlaydetails">
                                 <div class="categoriesbuttons">
-                                    <button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                    <input name="button" value="SZCZEGÓŁY" type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" style="margin-top:10px;" class="btn btn-default btn-responsive"/>
                                 </div>
 
                             </div>
@@ -407,26 +302,6 @@
                     </div>
                 </div>
 }
-                            @*<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <div class="poster" data-poster-id="2" data-poster-trailer="40wycr0oMYA">
-                        <div class="image">
-                            <div class="posterimg">
-                                <img src="@Url.Content("~/Content/images/arthurposter.jpg")" width="220" height="324" data-toggle="modal" data-target="#myModal">
-                            </div>
-                            <div class="overlaydetails">
-                                <div class="categoriesbuttons">
-                                    <button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
-                                </div>
-                            </div>
-                            <div class="overlayplayicon">
-                                <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
-                            </div>
-                            <div class="postertitle">
-                                <p>Król Artur: Legenda Miecza</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
 
                         </div>
                     </div>
@@ -445,7 +320,7 @@
                                 </div>
                                 <div class="overlaydetails">
                                     <div class="categoriesbuttons">
-                                        <button onclick="location.href='@Url.Action("ShowMovieDetails", "MovieDetails", new { id = movie.Id })'" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                        <button type="button" onclick="@Url.Action(" ShowMovieDetails","MovieDetails", new {id=movie.Id })" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
                                     </div>
 
                                 </div>
@@ -496,64 +371,48 @@
             <div class="tab-content">
                 <div id="events1" class="tab-pane fade in active">
                     <div class="posters">
+                            @foreach(var eventitem in Model.Events)
+                            { 
                         <div class="row">
                             <div class="event">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="h1"> Mecz Polska - Niemcy 12.03.2018
-                                        <p>
+                                        <p class="h1">@eventitem.Title </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <img class="img-center" src="@Url.Content("~/Content/images/MECZ.jpg")">
+                                    <img class="img-center" src="@Url.Content(eventitem.ImagePath)">
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <p class="h3">Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf
-                                    <p>
+                                    <p class="h3">@eventitem.Text</p>
                                 </div>
                                 <hr>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="event">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="h1"> Mecz Polska - Niemcy 12.03.2018
-                                        <p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <img class="img-center" src="@Url.Content("~/Content/images/MECZ.jpg")">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <p class="h3">Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf
-                                    <p>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
                 <div id="news1" class="tab-pane fade">
                     <div class="posters">
+                        @foreach (var newsitem in Model.News)
+                        {
                         <div class="row">
                             <div class="event">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="h1"> 1+1
-<p>
+                                        <p class="h1">@newsitem.Title<p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <img class="img-center" src="@Url.Content("~/Content/images/drugiepiwo.jpg")">
+                                    <img class="img-center" src="@Url.Content(newsitem.ImagePath)">
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <p class="h3">Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf
-                                    <p>
+                                    <p class="h3">@newsitem.Text</p>
                                 </div>
                                 <hr>
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
 
@@ -674,7 +533,8 @@
                     datatype: "json",
                     success: function (data) {
                         $.each(data, function (index, value) {
-                            reservationtablebody.append('<tr id="HoursOnMovie' + whichMovieIdNow + '"><td><p>' + value.MovieTitle + '</p ></td><td><img src="@Url.Content("~/Content/images/age15_.png")"></td><td><p>' + value.MovieDuration + ' minut</p></td></tr>');
+                            var ROOT = '@Url.Content("~")';
+                            reservationtablebody.append('<tr id="HoursOnMovie' + whichMovieIdNow + '"><td><p>' + value.MovieTitle + '</p ></td><td><img src="' + ROOT + value.AgeRestrictionImagePath.substring(2) + '"></td><td><p>' + value.MovieDuration + ' minut</p></td></tr>');
                             SetHoursLine(reservationtablebody, whichMovieIdNow);
                             for (var i = 0; i < value.DateTimeWithMovieType.length; i++)
                             {

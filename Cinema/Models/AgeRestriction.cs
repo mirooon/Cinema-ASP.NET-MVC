@@ -11,5 +11,6 @@ namespace Cinema.Models
         public string EnglishName { get; set; }
         [Display(Name = "Zdjęcie ograniczenia wiekowego")]
         public byte[] Photo { get; set; }
+        public string ImagePath { get; set; }
     }
 }

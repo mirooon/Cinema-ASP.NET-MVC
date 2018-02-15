@@ -12,6 +12,7 @@ using Cinema.Models;
 
 namespace Cinema.Controllers
 {
+    
     public class MoviesController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();

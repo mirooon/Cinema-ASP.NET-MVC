@@ -1,10 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model Cinema.Models.ViewModels.HomeViewModel
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>Kino - Cinema</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
     <script src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
@@ -17,11 +16,151 @@
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
     <script src="@Url.Content("~/Content/js/poster.js")"></script>
+    <script src="@Url.Content("~/Content/js/layout.js")"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @RenderSection("scripts", required: false)
 </head>
- @RenderBody()
+<header>
+    <div id="popover-content" style="display: none">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>ZNAJDŹ KINO</h4>
+                    @Html.TextBox("findCinema")
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>NAJBLIŻSZE KINO</h4>
+                    @Html.CheckBox("setLocation", false)
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>WSZYSTKIE KINA</h4>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Wybierz kino<span class="caret"></span></button>
+                        <ul class="dropdown-menu scrollable-menu" role="menu">
+                            @foreach (var cinema in Model.Cinemas)
+                            {
+                        <li><a href="#">@cinema.FullName</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                </div>
+    </div>
+    <div class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- LOGO PO SRODKU -->
+                <!-- <div class="navbar-brand-center">-->
+                <div class="navbar-brand">
+                    <a href="@Url.Action("Index","Home")"><img id="logologologo" src="@Url.Content("~/Content/images/logo.png")" alt="Cinema" ></a>
+                </div>
+                <!--</div>-->
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".HeaderCollapse">
+                    <span>MENU</span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse HeaderCollapse">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a data-toggle="popover"  data-placement="bottom"><img src="@Url.Content("~/Content/images/map_set_icon.png")" height="20" class="mr-xs"> Wybierz kino </a>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <div class="navbar-button-border">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Szukaj... " aria-label="Search">
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-button" id="chooseLang">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">PL  <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">PL</a></li>
+                                    <li><a href="#">EN</a></li>
+                                    <li><a href="#">DE</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">REPERTUAR </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">OFERTY </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hidden-sm hidden-md hidden-lg hidden-xl">
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">NASZE KINA </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+</header>
+<section class="red-bar">
+    <div class="navbar-red navbar-static-top navbar-li">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+
+                <ul class="hidden-xs nav navbar-nav navbar-center">
+
+                    <li>
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">REPERTUAR </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">OFERTY </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="navbar-button">
+                            <div class="navbar-button-border">
+                                <a href="#">NASZE KINA </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+@RenderBody()
 <body>
     <footer>
 
@@ -69,30 +208,3 @@
 </body>
 
 </html>
-<script>
-    $(document).ready(function () {
-       OnPosterHover();
-
-        $(document).on('hidden.bs.modal', '.modal', function() {
-            player.stopVideo();
-        });
-    });
-
-    function OnPosterHover() {
-
-        $(document).on('mouseover', '.poster', function () {
-            var linkToTrailer = $(this).attr('data-poster-trailer');
-            linkToTrailerPlay = linkToTrailer;
-            OnPosterGrayWithBorder($(this));
-            OnPosterBottomDetails($(this));
-            OnPosterTextColorChange($(this));
-            OnPosterPlayIcon($(this));
-        });
-        $(document).on('mouseout', '.poster', function () {
-            OffPosterGrayWithBorder($(this));
-            OffPosterBottomDetails($(this));
-            OffPosterTextColorChange($(this));
-            OffPosterPlayIcon($(this));
-        });
-    }
-</script>

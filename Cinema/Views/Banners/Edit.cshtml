@@ -28,7 +28,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="ImageFile" required />
+                <input type="file" name="ImageFile" />
+                Obecna ścieżka do zdjęcia:
+                @Html.DisplayFor(model => model.ImagePath)
+
+                <div class="image">
+                    <img src="@Url.Content(Model.ImagePath)" width="800" height="180" />
+                </div>
             </div>
         </div>
 

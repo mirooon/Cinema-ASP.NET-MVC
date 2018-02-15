@@ -16,6 +16,8 @@ namespace Cinema.Models
         [NotMapped]
         public List<DateTimeAndMovieTypePair> DateTimeWithMovieType { get; set; }
 
+        public string AgeRestrictionImagePath { get; set; }
+
         public virtual Movie Movie { get; set; }
         public virtual MovieType MovieType { get; set; }
         public virtual CinemaPlace Cinema { get; set; }

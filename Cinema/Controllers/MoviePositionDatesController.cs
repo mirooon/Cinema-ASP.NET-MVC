@@ -10,6 +10,7 @@ using Cinema.Models;
 using Cinema.Context;
 namespace Cinema.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MoviePositionDatesController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();

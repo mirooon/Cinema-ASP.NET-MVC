@@ -24,10 +24,13 @@ namespace Cinema.Controllers
 
             HomeViewModel vm = new HomeViewModel()
             {
+                Cinemas = db.Cinemas,
                 MovieNowBooking = db.Movies.Where(a => a.Status == Status.NowBooking),
                 MovieSoon = db.Movies.Where(a => a.Status == Status.Soon),
                 Genres = db.Genres,
-                Banners = db.Banners
+                Banners = db.Banners,
+                Events = db.Events,
+                News = db.News
             };
             
             return View(vm);
@@ -62,7 +65,7 @@ namespace Cinema.Controllers
         [AjaxChildActionOnly]
         public JsonResult GetMoviesByIdToTable(int cinemaid, string currentdate)
         {
-            var moviepositions = db.MoviePositions.Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).ToList();
+            var moviepositions = db.MoviePositions.Include("Movie").Include("Movie.AgeRestriction").Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).ToList();
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid).ToList();
             db.Configuration.ProxyCreationEnabled = false;
 
@@ -70,7 +73,7 @@ namespace Cinema.Controllers
             var positionslist = new List<MoviePosition>();
             foreach (var position in moviepositions)
             {
-                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration, AgeRestrictionImagePath = position.Movie.AgeRestriction.ImagePath };
 
                 foreach (var pos in positions)
                 {
@@ -87,7 +90,6 @@ namespace Cinema.Controllers
                 }
                 if(movieposition.DateTimeWithMovieType.Count !=0)
                 {
-
                 positionslist.Add(movieposition);
                 }
                

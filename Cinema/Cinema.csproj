@@ -192,12 +192,14 @@
     <Compile Include="Context\CinemaDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BannersController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieDetailsController.cs" />
     <Compile Include="Controllers\MoviePositionDatesController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Controllers\RepertoireController.cs" />
     <Compile Include="CustomAttributes\AjaxChildActionOnlyAttribute.cs" />
@@ -268,11 +270,34 @@
     <Compile Include="Migrations\201801191414410_AddedImageNameToBannerModel.Designer.cs">
       <DependentUpon>201801191414410_AddedImageNameToBannerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802020039428_AddedEventModel.cs" />
+    <Compile Include="Migrations\201802020039428_AddedEventModel.Designer.cs">
+      <DependentUpon>201802020039428_AddedEventModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802020040543_AddedEventModel2.cs" />
+    <Compile Include="Migrations\201802020040543_AddedEventModel2.Designer.cs">
+      <DependentUpon>201802020040543_AddedEventModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111312533_AddedNewsModel.cs" />
+    <Compile Include="Migrations\201802111312533_AddedNewsModel.Designer.cs">
+      <DependentUpon>201802111312533_AddedNewsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802121340181_AddedImagePathToAgeRestrictionModel.cs" />
+    <Compile Include="Migrations\201802121340181_AddedImagePathToAgeRestrictionModel.Designer.cs">
+      <DependentUpon>201802121340181_AddedImagePathToAgeRestrictionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802121910514_AddedAgeRestrictionImagePathToMoviePositionModel.cs" />
+    <Compile Include="Migrations\201802121910514_AddedAgeRestrictionImagePathToMoviePositionModel.Designer.cs">
+      <DependentUpon>201802121910514_AddedAgeRestrictionImagePathToMoviePositionModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestriction.cs" />
     <Compile Include="Models\Banner.cs" />
     <Compile Include="Models\CinemaPlace.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\NewsContext.cs" />
     <Compile Include="Models\ViewModels\DateTimeAndMovieTypePair.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -312,8 +337,8 @@
     <Content Include="Content\images\age15_.png" />
     <Content Include="Content\images\age18_.png" />
     <Content Include="Content\images\age6_.png" />
-    <Content Include="Content\images\ageBez_Ograniczen.png" />
-    <Content Include="Content\images\ageN_A.png" />
+    <Content Include="Content\images\ageNoLimit.png" />
+    <Content Include="Content\images\ageUNKNOWN.png" />
     <Content Include="Content\images\calendar.png" />
     <Content Include="Content\images\calendarblack.png" />
     <Content Include="Content\images\drugiepiwo.jpg" />
@@ -333,6 +358,7 @@
     <Content Include="Content\js\bootstrap\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\js\layout.js" />
     <Content Include="Content\js\poster.js" />
     <Content Include="Content\js\youtubeapi.js" />
     <Content Include="favicon.ico" />
@@ -434,11 +460,19 @@
     <Content Include="Views\Banners\Delete.cshtml" />
     <Content Include="Views\Banners\Edit.cshtml" />
     <Content Include="Views\Banners\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\panel\" />
     <Folder Include="obj\Release\TempPE\" />
+    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -501,6 +535,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801191414410_AddedImageNameToBannerModel.resx">
       <DependentUpon>201801191414410_AddedImageNameToBannerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020039428_AddedEventModel.resx">
+      <DependentUpon>201802020039428_AddedEventModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020040543_AddedEventModel2.resx">
+      <DependentUpon>201802020040543_AddedEventModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111312533_AddedNewsModel.resx">
+      <DependentUpon>201802111312533_AddedNewsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802121340181_AddedImagePathToAgeRestrictionModel.resx">
+      <DependentUpon>201802121340181_AddedImagePathToAgeRestrictionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802121910514_AddedAgeRestrictionImagePathToMoviePositionModel.resx">
+      <DependentUpon>201802121910514_AddedAgeRestrictionImagePathToMoviePositionModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Added_Ids_to_AgeRestriction_class_and_MoviePosition_class.resources" />
     <EmbeddedResource Include="obj\Release\Cinema.Migrations.Initialization.resources" />

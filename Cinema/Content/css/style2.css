@@ -2,7 +2,6 @@ body {
     background-color: #ececec;
     font-family: 'Nunito', sans-serif;
 }
-
 header {
     background-color: red;
 }
@@ -277,7 +276,6 @@ header {
     background-color: red;
     border: 1px solid white;
 }
-
 .poster {
     text-align: center;
     margin-bottom: 50px;
@@ -511,9 +509,9 @@ footer .group-element a:hover {
     color: black;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
     width: 50px !important;
-}
+}*/
 .hidden {
     display: none;
 }

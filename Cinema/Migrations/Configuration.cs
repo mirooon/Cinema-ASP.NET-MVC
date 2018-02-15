@@ -28,6 +28,8 @@
             SeedPositions(context);
             SeedPositionsDates(context);
             SeedBanners(context);
+            SeedEvents(context);
+            SeedNews(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -53,12 +55,12 @@
         private void SeedAgesRestriction(CinemaDbContext context)
         {
             var ages = new List<AgeRestriction>{
-                new AgeRestriction { Id = 1, Name = "Wiek 6+", EnglishName = "Age 6+" },
-                new AgeRestriction { Id = 2, Name = "Wiek 15+", EnglishName = "Age 15+" },
-                new AgeRestriction { Id = 3, Name = "Wiek 18+", EnglishName = "Age 18+" },
-                new AgeRestriction { Id = 4, Name = "Brak ograniczeń wiekowych", EnglishName = "Age NoLimit" },
-                new AgeRestriction { Id = 5, Name = "Wiek nieznany", EnglishName = "Age NA" },  // NA -> Not Available
-            };
+                new AgeRestriction { Id = 1, Name = "Wiek 6+", EnglishName = "Age 6+", ImagePath="~/Content/images/age6_.png" },
+                new AgeRestriction { Id = 2, Name = "Wiek 15+", EnglishName = "Age 15+", ImagePath="~/Content/images/age15_.png" },
+                new AgeRestriction { Id = 3, Name = "Wiek 18+", EnglishName = "Age 18+", ImagePath="~/Content/images/age18_.png" },
+                new AgeRestriction { Id = 4, Name = "Brak ograniczeń wiekowych", EnglishName = "Age NoLimit", ImagePath="~/Content/images/ageNoLimit.png" },
+                new AgeRestriction { Id = 5, Name = "Wiek nieznany", EnglishName = "Age unknown", ImagePath="~/Content/images/ageUNKNOWN.png" }, 
+                };
             ages.ForEach(g => context.AgesRestriction.AddOrUpdate(g));
             context.SaveChanges();
         }
@@ -113,14 +115,14 @@
             CinemaDbContext db = new CinemaDbContext();
 
             var positions = new List<MoviePositionDates>{
-                new MoviePositionDates { Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,11,30,00)},
-                new MoviePositionDates { Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,12,30,00)},
-                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2017,12,27,13,30,00) },
-                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2017,12,27,17,30,00) },
-                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2017,12,27,22,30,00) },
-                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2017,12,27,10,30,00) },
-                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2017,12,27,13,30,00) },
-                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2017,12,27,14,30,00) },
+                new MoviePositionDates {  Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,11,30,00)},
+                new MoviePositionDates {  Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,12,30,00)},
+                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,13,30,00) },
+                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2018,02,13,17,30,00) },
+                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2018,02,13,22,30,00) },
+                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2018,02,13,10,30,00) },
+                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2018,02,13,13,30,00) },
+                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2018,02,13,14,30,00) },
             };
             positions.ForEach(d => context.MoviePositionsDates.AddOrUpdate(a => a.Id,d));
             context.SaveChanges();
@@ -135,7 +137,29 @@
                 new Banner {Id=3, Name="Skyfall", ImagePath="~/Content/images/skyfall.jpg",ImageName="skyfall.jpg"}
 
             };
-            positions.ForEach(d => context.Banners.AddOrUpdate(a => a.Id, d));
+            positions.ForEach(d => context.Banners.AddOrUpdate(a => a.Name, d));
+            context.SaveChanges();
+        }
+        private void SeedEvents(CinemaDbContext context)
+        {
+            CinemaDbContext db = new CinemaDbContext();
+
+            var positions = new List<Event>{
+                new Event {Id=1, Title="Mecz Polska - Niemcy 12.03.2018",Text="Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf", ImagePath="~/Content/images/MECZ.jpg", ImageName="MECZ.jpg"},
+                new Event {Id=2, Title="Mecz Polska - Meksyk 17.03.2018",Text="Fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf", ImagePath="~/Content/images/MECZ.jpg",ImageName="MECZ.jpg"},
+
+            };
+            positions.ForEach(d => context.Events.AddOrUpdate(a => a.Title, d));
+            context.SaveChanges();
+        }
+        private void SeedNews(CinemaDbContext context)
+        {
+            CinemaDbContext db = new CinemaDbContext();
+
+            var positions = new List<News>{
+                new News {Id=1, Title="1+1",Text="Piwo 1+1 fasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf vfdasfdasdf asdfasdfas dsafasdf fdasfdasdf asdfasdfas dsafasdf", ImagePath="~/Content/images/drugiepiwo.jpg", ImageName="drugiepiwo.jpg"}
+            };
+            positions.ForEach(d => context.News.AddOrUpdate(a => a.Title, d));
             context.SaveChanges();
         }
     }

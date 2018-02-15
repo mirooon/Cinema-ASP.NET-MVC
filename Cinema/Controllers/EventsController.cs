@@ -13,114 +13,115 @@ using Cinema.Models;
 namespace Cinema.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class BannersController : Controller
+    public class EventsController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();
 
-        // GET: Banners
+        // GET: Events
         public ActionResult Index()
         {
-            return View(db.Banners.ToList());
+            return View(db.Events.ToList());
         }
 
-        // GET: Banners/Create
+
+        // GET: Events/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Banners/Create
+        // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,ImagePath,ImageName,ImageFile")] Banner banner)
+        public ActionResult Create([Bind(Include = "Id,Title,Text,ImageFile")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                if (banner.ImageFile != null && banner.ImageFile.ContentLength > 0)
+                if (@event.ImageFile != null && @event.ImageFile.ContentLength > 0)
                 {
-                    string filename = Path.GetFileNameWithoutExtension(banner.ImageFile.FileName);
-                    string extension = Path.GetExtension(banner.ImageFile.FileName);
+                    string filename = Path.GetFileNameWithoutExtension(@event.ImageFile.FileName);
+                    string extension = Path.GetExtension(@event.ImageFile.FileName);
                     Guid filenameNumbers = new Guid();
                     filename = filename + filenameNumbers + extension;
-                    banner.ImagePath = "~/Content/images/" + filename;
-                    banner.ImageName = filename + extension;
+                    @event.ImagePath = "~/Content/images/" + filename;
+                    @event.ImageName = filename + extension;
                     filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
-                    banner.ImageFile.SaveAs(filename);
-                    db.Banners.Add(banner);
+                    @event.ImageFile.SaveAs(filename);
+                    db.Events.Add(@event);
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
 
-            return View(banner);
+            return View(@event);
         }
 
-        // GET: Banners/Edit/5
+        // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner banner = db.Banners.Find(id);
-            if (banner == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(banner);
+            return View(@event);
         }
 
-        // POST: Banners/Edit/5
+        // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ImagePath,,ImageName,ImageFile")] Banner banner)
+        public ActionResult Edit([Bind(Include = "Id,Title,Text,ImageFile")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                if (banner.ImageFile != null && banner.ImageFile.ContentLength > 0)
+                if (@event.ImageFile != null && @event.ImageFile.ContentLength > 0)
                 {
-                    string filename = Path.GetFileNameWithoutExtension(banner.ImageFile.FileName);
-                    string extension = Path.GetExtension(banner.ImageFile.FileName);
+                    string filename = Path.GetFileNameWithoutExtension(@event.ImageFile.FileName);
+                    string extension = Path.GetExtension(@event.ImageFile.FileName);
                     Guid filenameNumbers = new Guid();
                     filename = filename + filenameNumbers + extension;
-                    banner.ImagePath = "~/Content/images/" + filename;
-                    banner.ImageName = filename + extension;
+                    @event.ImagePath = "~/Content/images/" + filename;
+                    @event.ImageName = filename + extension;
                     filename = Path.Combine(Server.MapPath("~/Content/images/"), filename);
-                    banner.ImageFile.SaveAs(filename);
-                    db.Entry(banner).State = EntityState.Modified;
+                    @event.ImageFile.SaveAs(filename);
+                    db.Entry(@event).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
-            return View(banner);
+            return View(@event);
         }
 
-        // GET: Banners/Delete/5
+        // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner banner = db.Banners.Find(id);
-            if (banner == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(banner);
+            return View(@event);
         }
 
-        // POST: Banners/Delete/5
+        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Banner banner = db.Banners.Find(id);
-            db.Banners.Remove(banner);
+            Event @event = db.Events.Find(id);
+            db.Events.Remove(@event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

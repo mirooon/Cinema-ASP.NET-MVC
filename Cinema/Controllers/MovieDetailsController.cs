@@ -20,7 +20,7 @@ namespace Cinema.Controllers
         {
             CinemaDbContext db = new CinemaDbContext();
 
-            var vm = db.Movies.Where(a => a.Id == id).FirstOrDefault();
+            var vm = db.Movies.Include("Genre").Include("AgeRestriction").Where(a => a.Id == id).FirstOrDefault();
             return View(vm);
         }
     }
