@@ -445,19 +445,23 @@
     var selectedMovieID = $("#MovieID :selected").val();
     var selectedMovieTypeID = $("#TypeID :selected").val();
     var selectedDate;
-        
+
         $(document).ready(function () {
 
         $("#Reservation").hide().removeClass("hidden");
         OnStart();
         $("#CinemaID").change(function () {
             OnCinemaChoose();
+            changeCinemaLocation();
         });
         $("#MovieID").change(function () {
                 OnMovieChoose();
         });
         $("#TypeID").change(function () {
             OnMovieTypeChoose();
+        });
+        $("#cinemaLocation").click(function (event) {
+            alert(this.innerHTML);
         });
         $('#Datepicker').datepicker({
             autoclose: true,
@@ -466,6 +470,8 @@
             dateFormat: 'dd-mm-yy'
         }).datepicker("setDate", new Date());
         selectedDate = $('#Datepicker').val();
+
+
     });
 
     function OnStart() {
@@ -483,12 +489,12 @@
                 }
 
         });
-    };
+        };
     function OnCinemaChoose() {
         $('#Reservation').slideUp("fast");
-
         $("#MovieID").prop("disabled", false);
         $("#Datepicker").prop("disabled", false);
+
                 selectedCinemaID = $("#CinemaID :selected").val();
                 $('#MovieID').empty();
                 $("#TypeID").prop("disabled", true);
@@ -526,6 +532,7 @@
         reservationtablebody.empty();
         selectedCinemaID = $("#CinemaID :selected").val();
         var whichMovieIdNow = 0;
+
          $.ajax({
              type: 'POST',
              data: { cinemaid: selectedCinemaID, currentdate: selectedDate },
@@ -705,5 +712,15 @@
                     }
                 });
         }
-        
+        function changeCinemaLocation() {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: '@Url.Action("GetCinemaFullname","Home")',
+                success: function (data) {
+                    $("#chooseCinemaLocation").text(data);
+                },
+                cache: false
+            });
+        }
     </script>

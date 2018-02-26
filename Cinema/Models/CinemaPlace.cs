@@ -21,6 +21,8 @@ namespace Cinema.Models
         public int Number { get; set; }
         [Display(Name = "Kod pocztowy")]
         public int PostCode { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
         [NotMapped]
         public string FullName { get { return City + " - " + Name; } }
         public string ImagePath { get; set; }

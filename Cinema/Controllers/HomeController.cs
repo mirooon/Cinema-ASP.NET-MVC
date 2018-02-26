@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 
 namespace Cinema.Controllers
 {
@@ -17,7 +18,7 @@ namespace Cinema.Controllers
 
         public ActionResult Index()
         {
-
+          //  Session["chooseCinemaLocation"] = new object();
             ViewBag.CinemasList = new SelectList(db.Cinemas,"Id", "FullName");
             ViewBag.MoviesList = new SelectList(db.Movies, "Id", "Title");
             ViewBag.TypesList = new SelectList(db.MovieTypes, "Id", "Name");
@@ -35,6 +36,15 @@ namespace Cinema.Controllers
             
             return View(vm);
         }
+        public JsonResult ChooseCinemaLocation(int id)
+        {
+            Session["chooseCinemaLocation"] = db.Cinemas.Where(c => c.Id == id).FirstOrDefault();
+
+
+
+            return Json(Session["chooseCinemaLocation"].ToString(), JsonRequestBehavior.AllowGet);
+        }
+
         [AjaxChildActionOnly]
         public JsonResult ShowGenre(int id)
         {
@@ -60,8 +70,29 @@ namespace Cinema.Controllers
             var position = db.MoviePositions.Include("Movie").Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).Select(p => p.Movie);
             db.Configuration.ProxyCreationEnabled = false;
             var positionslist = new SelectList(position, "Id", "Title");
+
+            Session["chooseCinemaLocation"] = db.Cinemas.Where(c => c.Id == cinemaid).FirstOrDefault().FullName;
+
             return Json(positionslist,JsonRequestBehavior.AllowGet);
         }
+        [AjaxChildActionOnly]
+        [WebMethod(EnableSession = true)]
+        public JsonResult GetCinemaFullname()
+        {
+            string returnString = "";
+
+            try
+            {
+                returnString = Session["chooseCinemaLocation"].ToString();
+            }
+            catch (Exception exception)
+            {
+                returnString = exception.Message;
+            }
+
+            return Json(returnString, JsonRequestBehavior.AllowGet);
+        }
+
         [AjaxChildActionOnly]
         public JsonResult GetMoviesByIdToTable(int cinemaid, string currentdate)
         {

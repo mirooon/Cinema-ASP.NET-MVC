@@ -1,16 +1,15 @@
-﻿jQuery(function ($) {
+﻿$(function () {
     var title = 'Wybór kina';
-        
-        $('[data-toggle="popover"]').popover({
-            html: true,
-            container: 'body',
-            title: 'Wybór kina',
-            content: function () {
-                return $('#popover-content').html();
-            }
-        });
-    
-});
+
+    $('[data-toggle="popover"]').popover({
+        html: true,
+        container: 'body',
+        title: 'Wybór kina',
+        content: function () {
+            return $('#popover-content').html();
+        }
+    });
+})
     $(document).ready(function () {
         OnPosterHover();
     $(document).on('hidden.bs.modal', '.modal', function() {
@@ -35,3 +34,11 @@
             OffPosterPlayIcon($(this));
         });
     }
+function peep(e) {
+    alert(e.text);
+    jQuery(e).on("click", function () {
+        alert(e.text);
+        $('[data-toggle="popover"]').popover("hide"); // hide all popovers when clicked on body
+    });
+    alert(e.text);
+}
