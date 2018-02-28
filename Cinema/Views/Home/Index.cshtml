@@ -1,394 +1,394 @@
-﻿@model Cinema.Models.ViewModels.HomeViewModel   
+﻿@model Cinema.Models.ViewModels.HomeViewModel
 
-   
-    <div class="container-fluid">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                @{
-                    var i = 0;
+<div class="container-fluid">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            @{
+                var i = 0;
                 foreach (var banner in Model.Banners)
                 {
                     var itemClass = i++ == 0 ? "item active" : "item";
-                <div class="@itemClass">
-                    <img src="@Url.Content(banner.ImagePath)" alt="@banner.Name">
-                </div>
+                    <div class="@itemClass">
+                        <img src="@Url.Content(banner.ImagePath)" alt="@banner.Name">
+                    </div>
 
                 }
-                    }
-                @*<div class="item">
+            }
+            @*<div class="item">
                     <img src="@Url.Content("~/Content/images/skyfall.jpg")" alt="Skyfall">
                 </div>
 
                 <div class="item">
                     <img src="@Url.Content("~/Content/images/xmen.jpg")" alt="X-Men">
                 </div>*@
-            </div>
+        </div>
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Poprzedni</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Następny</span>
-            </a>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Poprzedni</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Następny</span>
+        </a>
+    </div>
+</div>
+<section class="reservation">
+    <div class="container">
+        <div class="reservation-top">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <p class="h1">REZERWUJ</p>
+                </div>
+            </div>
+        </div>
+        <div class="reservation-table-top">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    @Html.DropDownList("chooseCinema", ViewBag.CinemasList as SelectList, "---WYBIERZ KINO---", new { id = "CinemaID", @class = "button-drop btn dropdown-toggle" })
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.DropDownList("chooseMovie", ViewBag.MoviesList as SelectList, "---WYBIERZ FILM---", new { id = "MovieID", @disabled = true, @class = "button-drop btn dropdown-toggle" })
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.DropDownList("chooseType", ViewBag.TypesList as SelectList, "---WYBIERZ TYP---", new { id = "TypeID", @disabled = true, @class = "center button-drop btn dropdown-toggle" })
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.TextBox("---WYBIERZ DATE---", "---WYBIERZ DATE---", new { id = "Datepicker", @class = "button-drop btn dropdown-toggle" })
+                </div>
+            </div>
         </div>
     </div>
-    <section class="reservation">
+    <div id="Reservation" class="reservation-table hidden">
         <div class="container">
-            <div class="reservation-top">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <p class="h1">REZERWUJ</p>
-                    </div>
-                </div>
-            </div>
-            <div class="reservation-table-top">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        @Html.DropDownList("chooseCinema", ViewBag.CinemasList as SelectList, "---WYBIERZ KINO---", new { id = "CinemaID", @class = "button-drop btn dropdown-toggle" })
-                    </div>                    
-                    <div class="col-lg-3 col-md-6">
-                        @Html.DropDownList("chooseMovie", ViewBag.MoviesList as SelectList, "---WYBIERZ FILM---", new { id = "MovieID", @disabled = true, @class="button-drop btn dropdown-toggle" })
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        @Html.DropDownList("chooseType", ViewBag.TypesList as SelectList, "---WYBIERZ TYP---", new { id = "TypeID", @disabled = true, @class = "center button-drop btn dropdown-toggle" })
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        @Html.TextBox("---WYBIERZ DATE---", "---WYBIERZ DATE---", new { id = "Datepicker", @class = "button-drop btn dropdown-toggle" })
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table id="ReservationTable" class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Film</th>
+                                    <th>Wiek</th>
+                                    <th>Czas trwania</th>
+                                    <th>10:00</th>
+                                    <th>11:00</th>
+                                    <th>12:00</th>
+                                    <th>13:00</th>
+                                    <th>14:00</th>
+                                    <th>15:00</th>
+                                    <th>16:00</th>
+                                    <th>17:00</th>
+                                    <th>18:00</th>
+                                    <th>19:00</th>
+                                    <th>20:00</th>
+                                    <th>21:00</th>
+                                    <th>22:00</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ReservationTableBody">
+                                <tr>
+                                    <td>
+                                        <p>Skyfall</p>
+                                    </td>
+                                    <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
+                                    <td>
+                                        <p>143 minut</p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Król Artur: Legenda miecza</p>
+                                    </td>
+                                    <td><img src="@Url.Content("~/Content/images/ageN_A.png")"></td>
+                                    <td>
+                                        <p>126 minut</p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>X-Men</p>
+                                    </td>
+                                    <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
+                                    <td>
+                                        <p>104 minut</p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                    <td>
+                                        <p></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="Reservation" class="reservation-table hidden">
-            <div class="container">
+    </div>
+</section>
+<section class="newandsoon">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#nowbooking">NA EKRANIE</a></li>
+            <li><a data-toggle="tab" href="#soon">WKRÓTCE</a></li>
+        </ul>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table id="ReservationTable" class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Film</th>
-                                        <th>Wiek</th>
-                                        <th>Czas trwania</th>
-                                        <th>10:00</th>
-                                        <th>11:00</th>
-                                        <th>12:00</th>
-                                        <th>13:00</th>
-                                        <th>14:00</th>
-                                        <th>15:00</th>
-                                        <th>16:00</th>
-                                        <th>17:00</th>
-                                        <th>18:00</th>
-                                        <th>19:00</th>
-                                        <th>20:00</th>
-                                        <th>21:00</th>
-                                        <th>22:00</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="ReservationTableBody">
-                                    <tr>
-                                        <td>
-                                            <p>Skyfall</p>
-                                        </td>
-                                        <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
-                                        <td>
-                                            <p>143 minut</p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Król Artur: Legenda miecza</p>
-                                        </td>
-                                        <td><img src="@Url.Content("~/Content/images/ageN_A.png")"></td>
-                                        <td>
-                                            <p>126 minut</p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>X-Men</p>
-                                        </td>
-                                        <td><img src="@Url.Content("~/Content/images/age15_.png")"></td>
-                                        <td>
-                                            <p>104 minut</p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <div class="tab-content">
+            <div id="nowbooking" class="tab-pane fade in active">
+                <div class="categoriesbuttons">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p>Gatunki:</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button onclick=ShowGenre(0) name="button" class="btn btn-default btn-responsive">Wszystkie</button>
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <button onclick=ShowGenre(@genre.Id) name="button" class="btn btn-default btn-responsive">@genre.Name</button>
+                            }
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="newandsoon">
-        <div class="container">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#nowbooking">NA EKRANIE</a></li>
-                <li><a data-toggle="tab" href="#soon">WKRÓTCE</a></li>
-            </ul>
-            
-            <div class="tab-content">
-                <div id="nowbooking" class="tab-pane fade in active">
-                    <div class="categoriesbuttons">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <p>Gatunki:</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button onclick=ShowGenre(0) name="button" class="btn btn-default btn-responsive">Wszystkie</button>
-                                @foreach (var genre in Model.Genres)
-    {
-                            <button onclick=ShowGenre(@genre.Id) name="button" class="btn btn-default btn-responsive">@genre.Name</button>
-}
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div id="Posters" class="posters">
-                        <div class="row">
-                            @foreach (var movie in Model.MovieNowBooking)
-            {
-                int indexerOfVideoId = @movie.TrailerLinkYoutube.LastIndexOf("v=");
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
-                        <div class="image">
-                            <div class="posterimg">
-                                <img src="@Url.Content(movie.ImagePath.Substring(1))" width="220" height="324">
-                            </div>
-                            <div class="overlaydetails">
-                                <div class="categoriesbuttons">
-                                    <input name="button" value="SZCZEGÓŁY" type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" style="margin-top:10px;" class="btn btn-default btn-responsive"/>
-                                </div>
+                <hr>
+                <div id="Posters" class="posters">
+                    <div class="row">
+                        @foreach (var movie in Model.MovieNowBooking)
+                        {
+                            int indexerOfVideoId = @movie.TrailerLinkYoutube.LastIndexOf("v=");
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
+                                    <div class="image">
+                                        <div class="posterimg">
+                                            <img src="@Url.Content(movie.ImagePath.Substring(1))" width="220" height="324">
+                                        </div>
+                                        <div class="overlaydetails">
+                                            <div class="categoriesbuttons">
+                                                <input name="button" value="SZCZEGÓŁY" type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" style="margin-top:10px;" class="btn btn-default btn-responsive" />
+                                            </div>
 
-                            </div>
-                            <div class="overlayplayicon">
-                                <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
-                            </div>
-                            <div class="postertitle">
-                                <p>@movie.Title</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-}
-
-                        </div>
-                    </div>
-                </div>
-                <div id="soon" class="tab-pane fade">
-                    <div class="posters">
-                        <div class="row">
-                            @foreach (var movie in Model.MovieSoon)
-        {
-            int indexerOfVideoId = @movie.TrailerLinkYoutube.LastIndexOf("v=");
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
-                            <div class="image">
-                                <div class="posterimg">
-                                    <img src="@movie.ImagePath.Substring(1)" width="220" height="324">
-                                </div>
-                                <div class="overlaydetails">
-                                    <div class="categoriesbuttons">
-                                        <button type="button" onclick="@Url.Action(" ShowMovieDetails","MovieDetails", new {id=movie.Id })" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                        </div>
+                                        <div class="overlayplayicon">
+                                            <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
+                                        </div>
+                                        <div class="postertitle">
+                                            <p>@movie.Title</p>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        }
 
+                    </div>
+                </div>
+            </div>
+            <div id="soon" class="tab-pane fade">
+                <div class="posters">
+                    <div class="row">
+                        @foreach (var movie in Model.MovieSoon)
+                        {
+                            int indexerOfVideoId = @movie.TrailerLinkYoutube.LastIndexOf("v=");
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                <div class="poster" data-poster-id="@movie.Id" data-poster-trailer="@movie.TrailerLinkYoutube.Substring(indexerOfVideoId + 2)">
+                                    <div class="image">
+                                        <div class="posterimg">
+                                            <img src="@movie.ImagePath.Substring(1)" width="220" height="324">
+                                        </div>
+                                        <div class="overlaydetails">
+                                            <div class="categoriesbuttons">
+                                                <button type="button" onclick="@Url.Action(" ShowMovieDetails","MovieDetails", new {id=movie.Id })" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="overlayplayicon">
+                                            <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal" />
+                                        </div>
+                                        <div class="postertitle">
+                                            <p>@movie.Title</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="overlayplayicon">
-                                    <img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal">
-                                </div>
-                                <div class="postertitle">
-                                    <p>@movie.Title</p>
-                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+                <div id="trailerModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Zapowiedź filmu</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- iframe youtube do zwiastunów o id="player" -->
+                                <div id="player" class="iframe"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-responsive active close" data-dismiss="modal">Zamknij</button>
                             </div>
                         </div>
                     </div>
-}
-                        </div>
-                    </div>
-            
-
-            <div id="trailerModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Zapowiedź filmu</h4>
-                        </div>
-                        <div class="modal-body">
-                            <!-- iframe youtube do zwiastunów o id="player" -->
-                            <div id="player" class="iframe"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-responsive active close" data-dismiss="modal">Zamknij</button>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-                </div>
-            </div>
-                <div class="eventsandnews">
+    </div>
+    <div class="eventsandnews">
         <div class="container">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#events1">WYDARZENIA</a></li>
                 <li><a data-toggle="tab" href="#news1">NOWOŚCI</a></li>
             </ul>
-            
+
             <div class="tab-content">
                 <div id="events1" class="tab-pane fade in active">
                     <div class="posters">
-                            @foreach(var eventitem in Model.Events)
-                            { 
-                        <div class="row">
-                            <div class="event">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="h1">@eventitem.Title </p>
+                        @foreach (var eventitem in Model.Events)
+                        {
+                            <div class="row">
+                                <div class="event">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="h1">@eventitem.Title </p>
+                                        </div>
                                     </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <img class="img-center" src="@Url.Content(eventitem.ImagePath)">
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <p class="h3">@eventitem.Text</p>
+                                    </div>
+                                    <hr>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <img class="img-center" src="@Url.Content(eventitem.ImagePath)">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <p class="h3">@eventitem.Text</p>
-                                </div>
-                                <hr>
                             </div>
-                        </div>
                         }
                     </div>
                 </div>
@@ -396,51 +396,54 @@
                     <div class="posters">
                         @foreach (var newsitem in Model.News)
                         {
-                        <div class="row">
-                            <div class="event">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="h1">@newsitem.Title<p>
+                            <div class="row">
+                                <div class="event">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="h1">@newsitem.Title<p>
+                                        </div>
                                     </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <img class="img-center" src="@Url.Content(newsitem.ImagePath)">
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <p class="h3">@newsitem.Text</p>
+                                    </div>
+                                    <hr>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <img class="img-center" src="@Url.Content(newsitem.ImagePath)">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <p class="h3">@newsitem.Text</p>
-                                </div>
-                                <hr>
                             </div>
-                        </div>
                         }
                     </div>
                 </div>
 
-            <div id="trailerModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg">
+                <div id="trailerModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Zapowiedź filmu</h4>
-                        </div>
-                        <div class="modal-body">
-                            <!-- iframe youtube do zwiastunów o id="player" -->
-                            <div id="player" class="iframe"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-responsive active close" data-dismiss="modal">Zamknij</button>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Zapowiedź filmu</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- iframe youtube do zwiastunów o id="player" -->
+                                <div id="player" class="iframe"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-responsive active close" data-dismiss="modal">Zamknij</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-                </div>
             </div>
-    </section>
-    <script>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script src="@Url.Content("~/Content/js/poster.js")"></script>
+}
+<script>
     var selectedCinemaID = $("#CinemaID :selected").val();
     var selectedMovieID = $("#MovieID :selected").val();
     var selectedMovieTypeID = $("#TypeID :selected").val();
@@ -723,4 +726,4 @@
                 cache: false
             });
         }
-    </script>
+</script>

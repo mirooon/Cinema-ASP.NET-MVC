@@ -25,7 +25,6 @@ namespace Cinema.Controllers
 
             HomeViewModel vm = new HomeViewModel()
             {
-                Cinemas = db.Cinemas,
                 MovieNowBooking = db.Movies.Where(a => a.Status == Status.NowBooking),
                 MovieSoon = db.Movies.Where(a => a.Status == Status.Soon),
                 Genres = db.Genres,
@@ -44,6 +43,14 @@ namespace Cinema.Controllers
 
             return Json(Session["chooseCinemaLocation"].ToString(), JsonRequestBehavior.AllowGet);
         }
+        public ActionResult PartialChooseCinemaNavigationBar()
+        {
+            ChooseCinemaNavigationBarViewModel vm = new ChooseCinemaNavigationBarViewModel()
+            {
+                Cinemas = db.Cinemas
+            };
+            return PartialView("_ChooseCinemaNavigationBar", vm); //return partial view
+    }
 
         [AjaxChildActionOnly]
         public JsonResult ShowGenre(int id)

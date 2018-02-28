@@ -302,6 +302,7 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\NewsContext.cs" />
+    <Compile Include="Models\ViewModels\ChooseCinemaNavigationBarViewModel.cs" />
     <Compile Include="Models\ViewModels\DateTimeAndMovieTypePair.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -472,6 +473,7 @@
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Shared\_ChooseCinemaNavigationBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

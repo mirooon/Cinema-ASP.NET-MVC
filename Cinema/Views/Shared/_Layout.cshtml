@@ -1,5 +1,4 @@
-﻿@model Cinema.Models.ViewModels.HomeViewModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,14 +7,13 @@
     <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
     <script src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
     <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Content/js/youtubeapi.js")"></script>
     <link href="@Url.Content("https://fonts.googleapis.com/css?family=Nunito&amp;subset=latin-ext")" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/boostrap-select.css")">
     <script src="@Url.Content("~/Content/js/bootstrap/bootstrap-select.js")"></script>
     <link rel="stylesheet" type="text/css" media="all"
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
-    <script src="@Url.Content("~/Content/js/poster.js")"></script>
+    <script src="@Url.Content("~/Content/js/youtubeapi.js")"></script>
     <script src="@Url.Content("~/Content/js/layout.js")"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -43,10 +41,7 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Wybierz kino<span class="caret"></span></button>
                         <ul class="dropdown-menu scrollable-menu cinemaLocation" role="menu">
-                            @foreach (var cinema in Model.Cinemas)
-                            {
-                            <li><a onclick="peep(this)" id="cinemaLocation">@cinema.FullName</a></li>
-                            }
+                            @Html.Action("PartialChooseCinemaNavigationBar", "Home")
                         </ul>
                     </div>
                 </div>
