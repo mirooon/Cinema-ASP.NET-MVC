@@ -1,6 +1,6 @@
 ﻿@model Cinema.Models.ViewModels.ChooseCinemaNavigationBarViewModel
 @foreach (var cinema in Model.Cinemas)
     {
-        <li><a onclick="peep(this)" id="cinemaLocation">@cinema.FullName</a></li>
+        <li><a href="@Url.Action("ChangeCinemaLocationSession","Home", new { CinemaFullName = cinema.FullName })" id="cinemaLocation">@cinema.FullName</a></li>
     }
 

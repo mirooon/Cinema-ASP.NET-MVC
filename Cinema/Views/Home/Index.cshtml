@@ -64,14 +64,13 @@
                     @Html.DropDownList("chooseType", ViewBag.TypesList as SelectList, "---WYBIERZ TYP---", new { id = "TypeID", @disabled = true, @class = "center button-drop btn dropdown-toggle" })
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    @Html.TextBox("---WYBIERZ DATE---", "---WYBIERZ DATE---", new { id = "Datepicker", @class = "button-drop btn dropdown-toggle" })
+                    @Html.TextBox("---WYBIERZ DATE---", "---WYBIERZ DATE---", new { id = "Datepicker", @disabled = true, @class = "button-drop btn dropdown-toggle" })
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     <div id="Reservation" class="reservation-table hidden">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
@@ -288,7 +287,7 @@
                                         </div>
                                         <div class="overlaydetails">
                                             <div class="categoriesbuttons">
-                                                <input name="button" value="SZCZEGÓŁY" type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" style="margin-top:10px;" class="btn btn-default btn-responsive" />
+                                                <button type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
                                             </div>
 
                                         </div>
@@ -320,7 +319,7 @@
                                         </div>
                                         <div class="overlaydetails">
                                             <div class="categoriesbuttons">
-                                                <button type="button" onclick="@Url.Action(" ShowMovieDetails","MovieDetails", new {id=movie.Id })" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
+                                                <button type="button" onclick="location.href='@Url.Action("ShowMovieDetails","MovieDetails", new {id=movie.Id })'" name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button>
                                             </div>
 
                                         </div>
@@ -443,19 +442,23 @@
 @section scripts{
     <script src="@Url.Content("~/Content/js/poster.js")"></script>
 }
-<script>
+    <script>
     var selectedCinemaID = $("#CinemaID :selected").val();
     var selectedMovieID = $("#MovieID :selected").val();
     var selectedMovieTypeID = $("#TypeID :selected").val();
     var selectedDate;
+    var session = '@Session["chooseCinemaLocation"]';
 
         $(document).ready(function () {
 
         $("#Reservation").hide().removeClass("hidden");
-        OnStart();
+       // OnStart();
+        if (session != '') {
+            $('#CinemaID option:contains(' + session + ')').prop({ selected: true });
+            OnCinemaChoose();
+        }
         $("#CinemaID").change(function () {
             OnCinemaChoose();
-            changeCinemaLocation();
         });
         $("#MovieID").change(function () {
                 OnMovieChoose();
@@ -463,9 +466,7 @@
         $("#TypeID").change(function () {
             OnMovieTypeChoose();
         });
-        $("#cinemaLocation").click(function (event) {
-            alert(this.innerHTML);
-        });
+
         $('#Datepicker').datepicker({
             autoclose: true,
             todayBtn: true,
@@ -477,8 +478,7 @@
 
     });
 
-    function OnStart() {
-        $("#Datepicker").prop("disabled", true);
+        @*function OnStart() {
         $('#CinemaID').empty();
         $.ajax({
             type: "GET",
@@ -492,7 +492,7 @@
                 }
 
         });
-        };
+        };*@
     function OnCinemaChoose() {
         $('#Reservation').slideUp("fast");
         $("#MovieID").prop("disabled", false);
@@ -516,7 +516,7 @@
                     $.ajax({
                         type: 'POST',
                         data: { cinemaid: selectedCinemaID },
-                        url: '@Url.Action("GetMovieById","Home")',
+                        url: '@Url.Action("GetMovieByCinemaId", "Home")',
                         datatype: "Json",
                         success: function (data) {
                             $('#MovieID').append('<option value="' + 0 + '"> --- WYBIERZ FILM ---</option>');
@@ -528,7 +528,8 @@
 
 
                 }
-    };
+        };
+
     function TableFilterWhenCinemaSelected()
     {
         var reservationtablebody = $("#ReservationTable").find('tbody');
@@ -629,7 +630,7 @@
          $.ajax({
              type: 'POST',
              data: { movieid: selectedMovieID, cinemaid: selectedCinemaID, currentdate: selectedDate },
-                    url: '@Url.Action("GetMovieByIdToTable", "Home")',
+                    url: '@Url.Action("GetMovieByMovieIdToTable", "Home")',
                     datatype: "json",
                     success: function (data) {
                             reservationtablebody.append('<tr id="HoursOnMovie0"><td><p>' + data.MovieTitle + '</p ></td><td><img src="@Url.Content("~/Content/images/age15_.png")"></td><td><p>' + data.MovieDuration + ' minut</p></td></tr>');
@@ -715,15 +716,5 @@
                     }
                 });
         }
-        function changeCinemaLocation() {
-            $.ajax({
-                type: "POST",
-                dataType: 'json',
-                url: '@Url.Action("GetCinemaFullname","Home")',
-                success: function (data) {
-                    $("#chooseCinemaLocation").text(data);
-                },
-                cache: false
-            });
-        }
-</script>
+
+    </script>

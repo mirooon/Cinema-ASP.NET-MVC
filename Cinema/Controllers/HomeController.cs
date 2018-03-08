@@ -5,24 +5,24 @@ using Cinema.Models.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
+using System.Web.SessionState;
 
 namespace Cinema.Controllers
 {
     public class HomeController : Controller
     {
-        CinemaDbContext db = new CinemaDbContext();
+        private CinemaDbContext db = new CinemaDbContext();
 
         public ActionResult Index()
         {
-          //  Session["chooseCinemaLocation"] = new object();
-            ViewBag.CinemasList = new SelectList(db.Cinemas,"Id", "FullName");
+            ViewBag.CinemasList = new SelectList(db.Cinemas, "Id", "FullName");
             ViewBag.MoviesList = new SelectList(db.Movies, "Id", "Title");
             ViewBag.TypesList = new SelectList(db.MovieTypes, "Id", "Name");
-
             HomeViewModel vm = new HomeViewModel()
             {
                 MovieNowBooking = db.Movies.Where(a => a.Status == Status.NowBooking),
@@ -32,25 +32,9 @@ namespace Cinema.Controllers
                 Events = db.Events,
                 News = db.News
             };
-            
+
             return View(vm);
         }
-        public JsonResult ChooseCinemaLocation(int id)
-        {
-            Session["chooseCinemaLocation"] = db.Cinemas.Where(c => c.Id == id).FirstOrDefault();
-
-
-
-            return Json(Session["chooseCinemaLocation"].ToString(), JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult PartialChooseCinemaNavigationBar()
-        {
-            ChooseCinemaNavigationBarViewModel vm = new ChooseCinemaNavigationBarViewModel()
-            {
-                Cinemas = db.Cinemas
-            };
-            return PartialView("_ChooseCinemaNavigationBar", vm); //return partial view
-    }
 
         [AjaxChildActionOnly]
         public JsonResult ShowGenre(int id)
@@ -72,34 +56,24 @@ namespace Cinema.Controllers
             return Json(positionslist, JsonRequestBehavior.AllowGet);
         }
         [AjaxChildActionOnly]
-        public JsonResult GetMovieById(int cinemaid)
+        public JsonResult GetMovieByCinemaId(int cinemaid)
         {
             var position = db.MoviePositions.Include("Movie").Where(a => a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).Select(p => p.Movie);
             db.Configuration.ProxyCreationEnabled = false;
             var positionslist = new SelectList(position, "Id", "Title");
 
-            Session["chooseCinemaLocation"] = db.Cinemas.Where(c => c.Id == cinemaid).FirstOrDefault().FullName;
-
+            var cinemaFullName = db.Cinemas.Where(c => c.Id == cinemaid).FirstOrDefault().FullName;
+            ChangeCinemaLocationSession(cinemaFullName);
             return Json(positionslist,JsonRequestBehavior.AllowGet);
         }
-        [AjaxChildActionOnly]
-        [WebMethod(EnableSession = true)]
-        public JsonResult GetCinemaFullname()
+
+        
+        public ActionResult ChangeCinemaLocationSession(string CinemaFullName)
         {
-            string returnString = "";
+            Session["chooseCinemaLocation"] = CinemaFullName;
 
-            try
-            {
-                returnString = Session["chooseCinemaLocation"].ToString();
-            }
-            catch (Exception exception)
-            {
-                returnString = exception.Message;
-            }
-
-            return Json(returnString, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index", "Home");
         }
-
         [AjaxChildActionOnly]
         public JsonResult GetMoviesByIdToTable(int cinemaid, string currentdate)
         {
@@ -135,7 +109,7 @@ namespace Cinema.Controllers
             return Json(positionslist, JsonRequestBehavior.AllowGet);
         }
         [AjaxChildActionOnly]
-        public JsonResult GetMovieByIdToTable(int movieid, int cinemaid, string currentdate)
+        public JsonResult GetMovieByMovieIdToTable(int movieid, int cinemaid, string currentdate)
         {
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
             var position = db.MoviePositions.Include("Movie").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
@@ -191,11 +165,19 @@ namespace Cinema.Controllers
             return Json(movieposition, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Contact()
+        [WebMethod(EnableSession = true)]
+        public JsonResult GetCinemaSession()
         {
-            ViewBag.Message = "Your contact page.";
+            if(Session["chooseCinemaLocation"] == null)
+            {
+                return Json(true,JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                string session = Session["chooseCinemaLocation"].ToString();
+                return Json(session, JsonRequestBehavior.AllowGet);
+            }
 
-            return View();
         }
     }
 }

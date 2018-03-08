@@ -1,6 +1,4 @@
 ﻿$(function () {
-    var title = 'Wybór kina';
-
     $('[data-toggle="popover"]').popover({
         html: true,
         container: 'body',
@@ -9,36 +7,85 @@
             return $('#popover-content').html();
         }
     });
-})
-    $(document).ready(function () {
-        OnPosterHover();
-    $(document).on('hidden.bs.modal', '.modal', function() {
+});
+$(document).ready(function () {
+    OnPosterHover();
+    $(function () {
+        $(document).on("keydown.autocomplete", "#searchCinema", function (e) {
+            $(this).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CinemaNavigationBar/Autocomplete",
+                        type: "POST",
+                        dataType: "json",
+                        data: { keyword: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item, value: item };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+            $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink
+        });
+    });
+    $(function () {
+        $(document).on("keydown.autocomplete", "#generalSearch", function (e) {
+            $(this).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/CinemaNavigationBar/Autocomplete",
+                        type: "POST",
+                        dataType: "json",
+                        data: { keyword: request.term },
+                        create: function (e) {
+                            e.target.parentElement.removeChild(e.target.parentElement.querySelector(".ui-helper-hidden-accessible"));
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: "", value: "d" };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+        });
+    });
+    $(document).on('hidden.bs.modal', '.modal', function () {
         player.stopVideo();
     });
-    });
+});
 
     function OnPosterHover() {
 
         $(document).on('mouseover', '.poster', function () {
-            var linkToTrailer = $(this).attr('data-poster-trailer');
-            linkToTrailerPlay = linkToTrailer;
+            var linkToTrailerPlay = $(this).attr('data-poster-trailer');
             OnPosterGrayWithBorder($(this));
             OnPosterBottomDetails($(this));
             OnPosterTextColorChange($(this));
             OnPosterPlayIcon($(this));
         });
         $(document).on('mouseleave', '.poster', function () {
-        OffPosterGrayWithBorder($(this));
-    OffPosterBottomDetails($(this));
+            OffPosterGrayWithBorder($(this));
+            OffPosterBottomDetails($(this));
             OffPosterTextColorChange($(this));
             OffPosterPlayIcon($(this));
         });
     }
-function peep(e) {
-    alert(e.text);
-    jQuery(e).on("click", function () {
-        alert(e.text);
-        $('[data-toggle="popover"]').popover("hide"); // hide all popovers when clicked on body
-    });
-    alert(e.text);
-}
+
+    //$('[data-toggle="popover"]').on('shown.bs.popover', function () {
+    //    $("#myCarousel").carousel("pause");
+    //});
+
+    //$('[data-toggle="popover"]').on('hidden.bs.popover', function () {
+    //    $("#myCarousel").carousel("cycle");
+    //});
