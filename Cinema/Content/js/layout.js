@@ -21,14 +21,20 @@ $(document).ready(function () {
                         data: { keyword: request.term },
                         success: function (data) {
                             response($.map(data, function (item) {
-                                return { label: item, value: item };
+                                return { label: item.FullName, value: item.FullName };
                             }))
-
-                        }
+                        },
                     })
                 },
-                messages: {
-                    noResults: "", results: ""
+                select: function (event, ui) {
+                    var cinemaFullName = ui.item.label;
+                    $.ajax({
+                        url: "/Home/ChangeCinemaLocationSession",
+                        type: "POST",
+                        dataType: "json",
+                        data: { CinemaFullName: cinemaFullName },
+                    })
+                     location.reload();
                 }
             });
             $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink

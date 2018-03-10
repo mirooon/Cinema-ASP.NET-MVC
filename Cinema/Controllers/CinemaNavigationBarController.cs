@@ -24,7 +24,7 @@ namespace Cinema.Controllers
         public JsonResult Autocomplete(string keyword)
         {
             var cinemas = db.Cinemas.Where(c => (c.City + " - " + c.Name).ToLower().Contains(keyword)).Take(5)
-                .Select(a=> (a.City + " - " + a.Name)).ToList();
+                .Select(a => new SearchCinemaNavigationBarAutocomplete { Id = a.Id, FullName= (a.City + " - " + a.Name) }).ToList();
             return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
     }

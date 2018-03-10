@@ -515,6 +515,26 @@ footer .group-element a:hover {
 .hidden {
     display: none;
 }
+
+ul.ui-autocomplete {
+    list-style: none;
+    left: 0;
+}
+.ui-autocomplete {
+    position: absolute !important;
+}
+.ui-menu {
+    padding-left: 0px;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-state-active.ui-button:hover {
+    border-width:0.5px;
+    border-color:red;
+    color:red;
+}
+.ui-widget-content {
+    z-index: 2000;
+}
+
 @media screen and (max-width: 767px) {
     .red-bar {
         height: 1px;
