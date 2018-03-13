@@ -11,13 +11,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.js"></script>
     <link rel="stylesheet" type="text/css" media="all"
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
     <script src="@Url.Content("~/Content/js/youtubeapi.js")"></script>
     <script src="@Url.Content("~/Content/js/layout.js")"></script>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-
-    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
     @RenderSection("scripts", required: false)
 </head>
 <header>
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h4>ZNAJDŹ KINO</h4>
-                    <input id="searchCinema">
+                    @Html.TextBox("searchCinema")
                 </div>
             </div>
             <hr />
@@ -43,7 +43,7 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Wybierz kino<span class="caret"></span></button>
                         <ul class="dropdown-menu scrollable-menu cinemaLocation" role="menu">
-                            @Html.Action("PartialChooseCinemaNavigationBar", "CinemaNavigationBar")
+                            @Html.Action("PartialChooseCinemaNavigationBar", "NavigationBar")
                         </ul>
                     </div>
                 </div>
@@ -87,9 +87,7 @@
                     <li>
 
                         <div class="navbar-button-border">
-                            <form class="form-inline">
-                                <input class="form-control mr-sm-2" id="generalSearch" type="text" placeholder="Szukaj filmu... " aria-label="Search">
-                            </form>
+                                @Html.TextBox("generalSearch", null, new { @class="form-control mr-sm-2", @placeholder="Szukaj filmu... "})
                         </div>
                     </li>
                     <li>

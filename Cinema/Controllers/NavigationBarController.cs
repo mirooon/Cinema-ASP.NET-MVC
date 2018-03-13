@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Cinema.Controllers
 {
-    public class CinemaNavigationBarController : Controller
+    public class NavigationBarController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();
 
@@ -21,11 +21,19 @@ namespace Cinema.Controllers
             return PartialView("_ChooseCinemaNavigationBar", vm);
         }
         [HttpPost]
-        public JsonResult Autocomplete(string keyword)
+        public JsonResult AutocompleteCinema(string keyword)
         {
             var cinemas = db.Cinemas.Where(c => (c.City + " - " + c.Name).ToLower().Contains(keyword)).Take(5)
-                .Select(a => new SearchCinemaNavigationBarAutocomplete { Id = a.Id, FullName= (a.City + " - " + a.Name) }).ToList();
+                .Select(a => new SearchNavigationBarAutocomplete { Id = a.Id, FullName= (a.City + " - " + a.Name) }).ToList();
             return Json(cinemas, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AutocompleteMovieSearch(string keyword)
+        {
+            var movies = db.Movies.Where(c => (c.OryginalTitle.ToLower().Contains(keyword) || c.Title.ToLower().Contains(keyword))
+            && c.Status != Models.Status.Hidden).Take(10).Select(c => new SearchNavigationBarAutocomplete { Id = c.Id, FullName = c.Title }).ToList();
+            return Json(movies, JsonRequestBehavior.AllowGet);
         }
     }
 }

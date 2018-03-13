@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Cinema.Models.ViewModels
 {
-    public class SearchCinemaNavigationBarAutocomplete
+    public class SearchNavigationBarAutocomplete
     {
         public int Id { get; set; }
         public string FullName { get; set; }

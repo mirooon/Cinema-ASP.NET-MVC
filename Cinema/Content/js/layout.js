@@ -15,7 +15,7 @@ $(document).ready(function () {
             $(this).autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "/CinemaNavigationBar/Autocomplete",
+                        url: "/NavigationBar/AutocompleteCinema",
                         type: "POST",
                         dataType: "json",
                         data: { keyword: request.term },
@@ -34,8 +34,15 @@ $(document).ready(function () {
                         dataType: "json",
                         data: { CinemaFullName: cinemaFullName },
                     })
-                     location.reload();
-                }
+                    location.reload();
+                },
+                response: function (event, ui) {
+                    if (!ui.content.length) {
+                        var noResult = { value: "", label: "Nie znaleziono" };
+                        ui.content.push(noResult);
+                    }
+                },
+                minLength: 2
             });
             $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink
         });
@@ -45,25 +52,31 @@ $(document).ready(function () {
             $(this).autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "/CinemaNavigationBar/Autocomplete",
+                        url: "/NavigationBar/AutocompleteMovieSearch",
                         type: "POST",
                         dataType: "json",
                         data: { keyword: request.term },
-                        create: function (e) {
-                            e.target.parentElement.removeChild(e.target.parentElement.querySelector(".ui-helper-hidden-accessible"));
-                        },
                         success: function (data) {
                             response($.map(data, function (item) {
-                                return { label: "", value: "d" };
+                                return { label: item.FullName, value: item.Id };
                             }))
-
-                        }
+                        },
                     })
                 },
-                messages: {
-                    noResults: "", results: ""
-                }
+                select: function (event, ui) {
+                    var movieid = ui.item.value;
+                    var url = "/MovieDetails/ShowMovieDetails/" + movieid;
+                    window.location.href = url;
+                },
+                response: function (event, ui) {
+                    if (!ui.content.length) {
+                        var noResult = { value: "", label: "Nie znaleziono" };
+                        ui.content.push(noResult);
+                    }
+                },
+                minLength: 2
             });
+            $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink
         });
     });
     $(document).on('hidden.bs.modal', '.modal', function () {

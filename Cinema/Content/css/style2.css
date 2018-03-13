@@ -531,10 +531,9 @@ ul.ui-autocomplete {
     border-color:red;
     color:red;
 }
-.ui-widget-content {
-    z-index: 2000;
+.ui-front {
+    z-index: 2000; 
 }
-
 @media screen and (max-width: 767px) {
     .red-bar {
         height: 1px;
