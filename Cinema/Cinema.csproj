@@ -373,9 +373,10 @@
     <Content Include="Content\js\bootstrap\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.js" />
-    <Content Include="Content\js\layout.js" />
-    <Content Include="Content\js\poster.js" />
-    <Content Include="Content\js\youtubeapi.js" />
+    <Content Include="Scripts\homepage.js" />
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\poster.js" />
+    <Content Include="Scripts\youtubeapi.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />

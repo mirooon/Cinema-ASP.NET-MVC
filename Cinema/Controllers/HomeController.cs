@@ -113,10 +113,10 @@ namespace Cinema.Controllers
         public JsonResult GetMovieByMovieIdToTable(int movieid, int cinemaid, string currentdate)
         {
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
-            var position = db.MoviePositions.Include("Movie").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
+            var position = db.MoviePositions.Include("Movie").Include("Movie.AgeRestriction").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
             db.Configuration.ProxyCreationEnabled = false;
             var positionslist = new List<MoviePosition>();
-                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+                MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration, AgeRestrictionImagePath=position.Movie.AgeRestriction.ImagePath };
 
                 foreach (var pos in positions)
                 {
@@ -145,10 +145,10 @@ namespace Cinema.Controllers
         public JsonResult GetMovieTypeByIdToTable(int movieid, int cinemaid, int movietypeid,string currentdate)
         {
             var positions = db.MoviePositionsDates.Include("MoviePosition").Where(a => a.MoviePosition.CinemaId == cinemaid && a.MoviePosition.MovieId == movieid).ToList();
-            var position = db.MoviePositions.Include("Movie").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
+            var position = db.MoviePositions.Include("Movie").Include("Movie.AgeRestriction").Where(a => a.MovieId == movieid && a.CinemaId == cinemaid && a.Movie.Status == Status.NowBooking).FirstOrDefault();
             db.Configuration.ProxyCreationEnabled = false;
             var positionslist = new List<MoviePosition>();
-            MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration };
+            MoviePosition movieposition = new MoviePosition { Id = position.Id, DateTimeWithMovieType = new List<DateTimeAndMovieTypePair>(), MovieTitle = position.Movie.Title, MovieDuration = position.Movie.Duration, AgeRestrictionImagePath = position.Movie.AgeRestriction.ImagePath };
 
             foreach (var pos in positions)
             {

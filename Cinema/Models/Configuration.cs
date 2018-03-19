@@ -116,14 +116,14 @@
             CinemaDbContext db = new CinemaDbContext();
 
             var positions = new List<MoviePositionDates>{
-                new MoviePositionDates {  Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,11,30,00)},
-                new MoviePositionDates {  Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,12,30,00)},
-                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,02,13,13,30,00) },
-                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2018,02,13,17,30,00) },
-                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2018,02,13,22,30,00) },
-                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2018,02,13,10,30,00) },
-                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2018,02,13,13,30,00) },
-                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2018,02,13,14,30,00) },
+                new MoviePositionDates {  Id = 1, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,03,19,11,30,00)},
+                new MoviePositionDates {  Id = 2, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,03,19,12,30,00)},
+                new MoviePositionDates {  Id = 3, MoviePositionId = 1,MovieTypeId = 3, DateTime = new DateTime(2018,03,19,13,30,00) },
+                new MoviePositionDates {  Id = 4, MoviePositionId = 1,MovieTypeId = 4, DateTime = new DateTime(2018,03,19,17,30,00) },
+                new MoviePositionDates {  Id = 5, MoviePositionId = 2,MovieTypeId = 1, DateTime = new DateTime(2018,03,19,22,30,00) },
+                new MoviePositionDates {  Id = 6, MoviePositionId = 2,MovieTypeId = 2, DateTime = new DateTime(2018,03,19,10,30,00) },
+                new MoviePositionDates {  Id = 7, MoviePositionId = 3,MovieTypeId = 6, DateTime = new DateTime(2018,03,19,13,30,00) },
+                new MoviePositionDates {  Id = 8, MoviePositionId = 3,MovieTypeId = 7, DateTime = new DateTime(2018,03,19,14,30,00) },
             };
             positions.ForEach(d => context.MoviePositionsDates.AddOrUpdate(a => a.Id,d));
             context.SaveChanges();
