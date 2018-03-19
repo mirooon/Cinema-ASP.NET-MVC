@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Cinema.Models;
 using Cinema.Context;
+using Cinema.Context.Cinema.Context;
+
 namespace Cinema.Controllers
 {
     [Authorize(Roles = "Admin")]

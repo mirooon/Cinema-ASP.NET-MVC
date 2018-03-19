@@ -1,4 +1,5 @@
 ﻿using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 using Cinema.CustomAttributes;
 using Cinema.Models;
 using Cinema.Models.ViewModels;

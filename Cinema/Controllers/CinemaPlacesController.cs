@@ -8,98 +8,112 @@ using System.Web;
 using System.Web.Mvc;
 using Cinema.Context;
 using Cinema.Context.Cinema.Context;
+using Cinema.CustomAttributes;
 using Cinema.Models;
 
 namespace Cinema.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class GenresController : Controller
+    public class CinemaPlacesController : Controller
     {
         private CinemaDbContext db = new CinemaDbContext();
 
-        // GET: Genres
+        // GET: CinemaPlaces
         public ActionResult Index()
         {
-            return View(db.Genres.ToList());
+            return View(db.Cinemas.ToList());
         }
 
+        // GET: CinemaPlaces/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CinemaPlace cinemaPlace = db.Cinemas.Find(id);
+            if (cinemaPlace == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cinemaPlace);
+        }
 
-        // GET: Genres/Create
+        // GET: CinemaPlaces/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Genres/Create
+        // POST: CinemaPlaces/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,EnglishName")] Genre genre)
+        public ActionResult Create([Bind(Include = "Id,City,Name,Street,Number,PostCode,Longitude,Latitude,ImagePath")] CinemaPlace cinemaPlace)
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genre);
+                db.Cinemas.Add(cinemaPlace);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(genre);
+            return View(cinemaPlace);
         }
 
-        // GET: Genres/Edit/5
+        // GET: CinemaPlaces/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            CinemaPlace cinemaPlace = db.Cinemas.Find(id);
+            if (cinemaPlace == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(cinemaPlace);
         }
 
-        // POST: Genres/Edit/5
+        // POST: CinemaPlaces/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,EnglishName")] Genre genre)
+        public ActionResult Edit([Bind(Include = "Id,City,Name,Street,Number,PostCode,Longitude,Latitude,ImagePath")] CinemaPlace cinemaPlace)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
+                db.Entry(cinemaPlace).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genre);
+            return View(cinemaPlace);
         }
 
-        // GET: Genres/Delete/5
+        // GET: CinemaPlaces/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            CinemaPlace cinemaPlace = db.Cinemas.Find(id);
+            if (cinemaPlace == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(cinemaPlace);
         }
 
-        // POST: Genres/Delete/5
+        // POST: CinemaPlaces/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.Genres.Find(id);
-            db.Genres.Remove(genre);
+            CinemaPlace cinemaPlace = db.Cinemas.Find(id);
+            db.Cinemas.Remove(cinemaPlace);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -111,6 +125,13 @@ namespace Cinema.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [AjaxChildActionOnly]
+        public JsonResult CinemasForGoogleMarks()
+        {
+            var cinemas = db.Cinemas.ToList();
+
+            return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
     }
 }

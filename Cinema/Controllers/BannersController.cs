@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 using Cinema.Models;
 
 namespace Cinema.Controllers

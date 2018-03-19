@@ -12,6 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Cinema.Models;
 using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 
 namespace Cinema
 {

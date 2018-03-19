@@ -20,8 +20,10 @@ namespace Cinema.Models
         [Display(Name = "Numer")]
         public int Number { get; set; }
         [Display(Name = "Kod pocztowy")]
-        public int PostCode { get; set; }
+        public string PostCode { get; set; }
+        [Display(Name = "Długość geograficzna")]
         public double Longitude { get; set; }
+        [Display(Name = "Szerokość geograficzna")]
         public double Latitude { get; set; }
         [NotMapped]
         public string FullName { get { return City + " - " + Name; } }

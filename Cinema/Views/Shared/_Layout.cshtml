@@ -19,6 +19,7 @@
     <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
     @RenderSection("scripts", required: false)
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOR6qLLM8ssQPrhZtz-tckW6hO69nJI1E&libraries=geometry"></script>
 </head>
 <header>
     <div id="popover-content" style="display: none">
@@ -32,7 +33,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h4>NAJBLIŻSZE KINO</h4>
-                    @Html.CheckBox("findLocation", true)
+                    @Html.CheckBox("findLocation", false)
 
                 </div>
             </div>

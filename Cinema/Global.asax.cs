@@ -1,4 +1,5 @@
 ﻿using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 using Cinema.Migrations;
 using System;
 using System.Collections.Generic;

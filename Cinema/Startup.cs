@@ -1,4 +1,5 @@
 ﻿using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 using Cinema.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

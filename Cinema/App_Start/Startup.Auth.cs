@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Cinema.Models;
 using Cinema.Context;
+using Cinema.Context.Cinema.Context;
 
 namespace Cinema
 {
