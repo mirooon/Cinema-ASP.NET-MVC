@@ -38,7 +38,7 @@ function OffPosterTextColorChange(event) {
         .css("color", "white");
 }
 
-function OnPosterPlayIcon(event) {
+function OnPosterPlayIcon(event, linkToTrailerPlay) {
     event.find('.overlayplayicon')
         .stop().animate({
             left: "0px"

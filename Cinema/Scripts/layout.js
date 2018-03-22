@@ -19,7 +19,7 @@
             OnPosterGrayWithBorder($(this));
             OnPosterBottomDetails($(this));
             OnPosterTextColorChange($(this));
-            OnPosterPlayIcon($(this));
+            OnPosterPlayIcon($(this), linkToTrailerPlay);
         });
         $(document).on('mouseleave', '.poster', function () {
             OffPosterGrayWithBorder($(this));
@@ -56,7 +56,7 @@ function ClosestMarker(markers, myMarker) {
 
     })
 }
-$(function Popover() {
+function Popover() {
     $('[data-toggle="popover"]').popover({
         html: true,
         container: 'body',
@@ -65,8 +65,8 @@ $(function Popover() {
             return $('#popover-content').html();
         }
     });
-});
-$(function searchCinema() {
+}
+function searchCinema() {
     $(document).on("keydown.autocomplete", "#searchCinema", function (e) {
         $(this).autocomplete({
             source: function (request, response) {
@@ -104,8 +104,8 @@ $(function searchCinema() {
         });
         $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink
     });
-});
-$(function searchMovie() {
+}
+function searchMovie() {
     $(document).on("keydown.autocomplete", "#generalSearch", function (e) {
         $(this).autocomplete({
             source: function (request, response) {
@@ -136,8 +136,8 @@ $(function searchMovie() {
         });
         $(".ui-helper-hidden-accessible").hide(); //with this site's elements blink
     });
-});
-$(function findClosestCinema() {
+}
+function findClosestCinema() {
     $(document).on('change', '#findLocation', function () {
         var currentLatLng;
         if (navigator.geolocation) {
@@ -180,7 +180,7 @@ $(function findClosestCinema() {
         }
         else { $("#message").html("Geolocation is not supported by this browser."); }
     })
-})
+}
 function OnRepertoireInRedBarClick(){
 $(document).on('click', '.repertoire', function () {
     $('html,body').animate({

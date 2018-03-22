@@ -5,7 +5,6 @@ var selectedDate;
 var session = '@Session["chooseCinemaLocation"]';
 
 $(document).ready(function () {
-
     $("#Reservation").hide().removeClass("hidden");
     // OnStart();
     if (session != '') {
@@ -26,10 +25,16 @@ $(document).ready(function () {
         autoclose: true,
         todayBtn: true,
         todayHighlight: true,
-        dateFormat: 'dd-mm-yy'
+        dateFormat: 'dd-mm-yy',
+        onSelect: function () {
+            $("#MovieID").prop("disabled", false);
+            $("#TypeID").prop("disabled", false);
+            var date = $(this).val();
+            selectedDate = date;
+            OnCinemaChoose();
+        }
     }).datepicker("setDate", new Date());
     selectedDate = $('#Datepicker').val();
-
 
 });
 function OnCinemaChoose() {
@@ -73,7 +78,6 @@ function TableFilterWhenCinemaSelected() {
     reservationtablebody.empty();
     selectedCinemaID = $("#CinemaID :selected").val();
     var whichMovieIdNow = 0;
-
     $.ajax({
         type: 'POST',
         data: { cinemaid: selectedCinemaID, currentdate: selectedDate },
@@ -215,13 +219,6 @@ function TableFilterWhenMovieTypeIsSelected() {
         }
     });
 }
-$('#Datepicker').change(function () {
-    $("#MovieID").prop("disabled", false);
-    $("#Type").prop("disabled", false);
-    var date = $(this).val();
-    selectedDate = date;
-    OnCinemaChoose();
-});
 function ShowGenre(GenreID) {
     var posters = $('#Posters').find('div');
     var amountOfPosters = 0;
@@ -235,7 +232,7 @@ function ShowGenre(GenreID) {
             $.each(data, function (index, value) {
                 var indexerOfVideoId = value.TrailerLinkYoutube.lastIndexOf('v=');
                 amountOfPosters++;
-                posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><div class="poster" data-poster-id="' + value.Id + '" data-poster-trailer="' + value.TrailerLinkYoutube.substring(indexerOfVideoId + 2) + '"><div class="image"><div class="posterimg"><img src="' + value.ImagePath.substring(1) + '" width="220" height="324"></div><div class="overlaydetails"><div class="categoriesbuttons"><button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button></div></div><div class="overlayplayicon"><img src="@Url.Content("~/Content/images/playicon.png")" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal"></div><div class="postertitle"><p>' + value.Title + '</p></div></div></div>')
+                posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><div class="poster" data-poster-id="' + value.Id + '" data-poster-trailer="' + value.TrailerLinkYoutube.substring(indexerOfVideoId + 2) + '"><div class="image"><div class="posterimg"><img src="' + value.ImagePath.substring(1) + '" width="220" height="324"></div><div class="overlaydetails"><div class="categoriesbuttons"><button name="button" style="margin-top:10px;" class="btn btn-default btn-responsive">SZCZEGÓŁY</button></div></div><div class="overlayplayicon"><img src="/Content/images/playicon.png" alt="Zobacz zapowiedź" data-toggle="modal" data-target="#trailerModal"></div><div class="postertitle"><p>' + value.Title + '</p></div></div></div>')
             });
             if (amountOfPosters == 0) {
                 posters.append('<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"><h1 style="color:white;">Brak</h1></div>');

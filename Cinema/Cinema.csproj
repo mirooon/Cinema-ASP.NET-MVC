@@ -362,6 +362,7 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\map_set_icon.png" />
     <Content Include="Content\images\MECZ.jpg" />
+    <Content Include="Content\images\NOCKINOWA.jpg" />
     <Content Include="Content\images\playicon.png" />
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\skyfall.jpg" />
