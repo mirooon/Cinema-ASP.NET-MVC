@@ -4,20 +4,15 @@
 <head>
     <title>Kino - Cinema</title>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
-    <script src="@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
+    @Scripts.Render("~/bundles/jquery")
     <link href="@Url.Content("https://fonts.googleapis.com/css?family=Nunito&amp;subset=latin-ext")" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.js"></script>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
     <script src="@Url.Content("~/Scripts/youtubeapi.js")"></script>
     <script src="@Url.Content("~/Scripts/layout.js")"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")"></script>
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style2.css")">
+    @Styles.Render("~/Content/jqueryuicss")
+    @Scripts.Render("~/bundles/jqueryui")
+    <link rel="stylesheet" href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")">
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/site")
     @RenderSection("scripts", required: false)
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOR6qLLM8ssQPrhZtz-tckW6hO69nJI1E&libraries=geometry"></script>
 </head>
