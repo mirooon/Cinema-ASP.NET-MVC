@@ -71,17 +71,19 @@
                         <div class="navbar-button">
                             <div class="navbar-button-border">
                                 <img src="@Url.Content("~/Content/images/map_set_icon.png")" height="20" class="mr-xs">
-                            <a id="chooseCinemaLocation"  data-toggle="popover" data-placement="bottom">
-                                @if (Session["chooseCinemaLocation"] == null)
-                                {
-                                <text>Wybierz kino</text>
-                                }
-                                else
-                                { 
-                                @Session["chooseCinemaLocation"]
-                                }
-                            </a>
-                            </div>
+                                    @if (Session["chooseCinemaLocation"] == null)
+                                    { 
+                                    <a id="chooseCinemaLocation" data-toggle="popover" data-placement="bottom">
+                                        <text>Wybierz kino</text>
+                                    </a>
+                                    }
+                                    else
+                                    {
+                                    <a id="chooseCinemaLocation" data-toggle="popover" data-placement="bottom" data-session="@Session["chooseCinemaLocation"].ToString()">
+                                        @Session["chooseCinemaLocation"]
+                                    </a>
+                                        }
+</div>
                         </div>
 
                     </li>

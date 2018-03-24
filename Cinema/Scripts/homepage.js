@@ -2,11 +2,12 @@
 var selectedMovieID = $("#MovieID :selected").val();
 var selectedMovieTypeID = $("#TypeID :selected").val();
 var selectedDate;
-var session = '@Session["chooseCinemaLocation"]';
-
+var session;
 $(document).ready(function () {
     $("#Reservation").hide().removeClass("hidden");
     // OnStart();
+ 
+    session = $('#chooseCinemaLocation').attr('data-session');
     if (session != '') {
         $('#CinemaID option:contains(' + session + ')').prop({ selected: true });
         OnCinemaChoose();

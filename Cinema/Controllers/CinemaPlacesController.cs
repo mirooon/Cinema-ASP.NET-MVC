@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Cinema.Context;
@@ -20,12 +23,16 @@ namespace Cinema.Controllers
         // GET: CinemaPlaces
         public ActionResult Index()
         {
-            return View(db.Cinemas.ToList());
+
+            var cinemas = db.Cinemas.ToList();
+
+            return View(cinemas);
         }
 
         // GET: CinemaPlaces/Details/5
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -133,5 +140,7 @@ namespace Cinema.Controllers
 
             return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
+
+        
     }
 }

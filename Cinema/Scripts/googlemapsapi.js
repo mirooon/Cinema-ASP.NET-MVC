@@ -37,7 +37,6 @@
                 content: "<div class='infoDiv'><h3>" + item.FullName + "</h3><div><h4>Adres: </div><div>" + item.Street + " " + item.Number + "</div>" + "<div>" + item.PostCode + " " + item.City + "</div></h4></div></div>"
             });
             AddMarkerListener(marker, map, infowindow);
-            markers.push(marker);
         });
     }
     });

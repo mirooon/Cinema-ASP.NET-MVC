@@ -82,9 +82,13 @@
         }
         private void SeedCinemas(CinemaDbContext context)
         {
-            context.Cinemas.AddOrUpdate(new CinemaPlace { Id = 1, City = "Bydgoszcz", Name = "FocusMall", Street = "Jagiello", Number = 39, PostCode = "85-094", Longitude= 18.01774398, Latitude= 53.12441802 });
-            context.Cinemas.AddOrUpdate(new CinemaPlace { Id = 2, City = "Bydgoszcz", Name = "Galeria Pomorska", Street = "Fordońska", Number = 141, PostCode = "85-739", Longitude = 18.06728116, Latitude = 53.12512106 });
-            context.Cinemas.AddOrUpdate(new CinemaPlace { Id = 3, City = "Poznań", Name = "Posnania", Street = "Pleszewska ", Number = 1, PostCode = "61-136", Longitude = 16.95501018, Latitude = 52.39709315 });
+            var cinemas = new List<CinemaPlace>
+            {
+                new CinemaPlace { Id = 1, City = "Bydgoszcz", Name = "FocusMall", Street = "Jagiello", Number = 39, PostCode = "85-094", Longitude= 18.01774398, Latitude= 53.12441802 },
+                new CinemaPlace { Id = 2, City = "Bydgoszcz", Name = "Galeria Pomorska", Street = "Fordońska", Number = 141, PostCode = "85-739", Longitude = 18.06728116, Latitude = 53.12512106 },
+                new CinemaPlace { Id = 3, City = "Poznań", Name = "Posnania", Street = "Pleszewska ", Number = 1, PostCode = "61-136", Longitude = 16.95501018, Latitude = 52.39709315 }
+            };
+            cinemas.ForEach(g => context.Cinemas.AddOrUpdate(p => p.Name, g));
             context.SaveChanges();
         }
         private void SeedMovies(CinemaDbContext context)

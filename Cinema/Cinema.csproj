@@ -56,6 +56,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RazorEngine, Version=2.1.4113.149, Culture=neutral, PublicKeyToken=1f722ed313f51831, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorJS.0.4.3\lib\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorJS, Version=0.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorJS.0.4.3\lib\RazorJS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -374,6 +380,7 @@
     <Content Include="Content\js\bootstrap\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\geolocationvalidation.js" />
     <Content Include="Scripts\homepage.js" />
     <Content Include="Scripts\layout.js" />
     <Content Include="Scripts\poster.js" />
@@ -502,7 +509,6 @@
     <Content Include="Views\MovieDetails\Index.cshtml" />
     <Content Include="Views\MovieDetails\ShowMovieDetails.cshtml" />
     <Content Include="Views\Shared\_BackdoorLayout.cshtml" />
-    <Content Include="Views\Panel\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Movies\Create.cshtml" />
     <Content Include="Views\Movies\Delete.cshtml" />
@@ -542,6 +548,7 @@
     <Content Include="Views\CinemaPlaces\Details.cshtml" />
     <Content Include="Views\CinemaPlaces\Edit.cshtml" />
     <Content Include="Views\CinemaPlaces\Index.cshtml" />
+    <Content Include="Views\Panel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
