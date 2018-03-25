@@ -74,9 +74,13 @@ oraz przycisk ze szczegółami filmu przekierowujący na stronę z dokładniejsz
 ### Panel Administracyjny: ###
 
 Administrator logujący się do panelu
+
 Ścieżka /Panel/Index
+
 Login: admin@gmail.com
+
 Hasło: ADmin9
+
 Jest w stanie zarządzać (dodawać, usuwać, edytować) wszystkim co pojawi się na stronie:
 - Filmami
 - Kinami (z podglądem na Mapę Google)
@@ -87,3 +91,9 @@ Jest w stanie zarządzać (dodawać, usuwać, edytować) wszystkim co pojawi si�
 - Nowościami
 
 ![AdminPanel](http://i63.tinypic.com/v5bm9s.jpg)
+
+---
+
+Lista do zrobienia:
+
+- Rezerwacja biletów
