@@ -19,11 +19,11 @@ Projekt miał na celu poszerzenie mojej wiedzy w technologiach:
 
 ### Desktop: ###
 
-![DesktopView](http://url/to/img.png)
+![DesktopView](http://i64.tinypic.com/50k49c.jpg)
 
 ### Mobile: ###
 
-![MobileView](http://url/to/img.png)
+![MobileView](http://i63.tinypic.com/2i0599y.jpg)
 
 ---
 
@@ -34,7 +34,7 @@ Użytkownik ma możliwość zmiany kina w pasku nawigacyjnym poprzez:
 - zaznaczenie geolokalizacji (Google Maps API - Geolokalizacja wybierze kino najbliższe użytkownikowi)
 - wybór z listy
 
-![ChooseCinemaNavigationBar](http://url/to/img.png)
+![ChooseCinemaNavigationBar](http://i67.tinypic.com/30seskh.jpg)
 
 ---
 
@@ -43,7 +43,7 @@ Użytkownik ma możliwość zmiany kina w pasku nawigacyjnym poprzez:
 Sekcja rezerwacji pozwala zmienić kino, DropDownList korzysta ze zmiennych sesji dzieki czemu osoba korzystająca z aplikacji nie jest zmuszona za każdym razem odświeżania strony dbać o to aby kino zostało wybrane. Użytkownik również może sprecyzować jaki film dokładnie go interesuje, typ oraz datę.
 Dane są pobierane  oraz filtrowane za każdą interakcją osoby korzystającej z aplikacji.
 
-![Reservation](http://url/to/img.png)
+![Reservation](http://i63.tinypic.com/34yoc3n.jpg)
 
 ---
 
@@ -53,27 +53,28 @@ Aktualne produkcje, które widnieją na ekranie kin bądź będą dopiero dostę
 Użytkownik może wybrać kategorię filmów jaka mu odpowiada.
 Po najechaniu myszką na jedną z opcji za pośrednictwem animacji JavaScript pojawi się znaczek "Play". 
 
-![AvailableAndSoon](http://url/to/img.png)
+![AvailableAndSoon](http://i66.tinypic.com/jr9zqp.jpg)
 
 Po naciśnieciu wyświetli okno modalne ze zwiastunem filmu (Youtube iFrame)
 
-![ModalWindow](http://url/to/img.png)
+![ModalWindow](http://i65.tinypic.com/qs1o4g.jpg)
 
 oraz przycisk ze szczegółami filmu przekierowujący na stronę z dokładniejszym opisem filmu.
 
-![MovieDetails](http://url/to/img.png)
+![MovieDetails](http://i64.tinypic.com/2q3dlib.jpg)
 
 ---
 
 ### Nowości i wydarzenia: ###
 
-![EventsAndNews](http://url/to/img.png)
+![EventsAndNews](http://i66.tinypic.com/mkkbpg.jpg)
 
 ---
 
 ### Panel Administracyjny: ###
 
-Administrator logujący się do panelu (/Panel/Index)
+Administrator logujący się do panelu
+Ścieżka /Panel/Index
 Login: admin@gmail.com
 Hasło: ADmin9
 Jest w stanie zarządzać (dodawać, usuwać, edytować) wszystkim co pojawi się na stronie:
@@ -85,4 +86,4 @@ Jest w stanie zarządzać (dodawać, usuwać, edytować) wszystkim co pojawi si�
 - Wydarzeniami
 - Nowościami
 
-![AdminPanel](http://url/to/img.png)
+![AdminPanel](http://i63.tinypic.com/v5bm9s.jpg)
