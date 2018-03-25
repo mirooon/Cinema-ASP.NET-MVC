@@ -67,7 +67,7 @@ oraz przycisk ze szczegółami filmu przekierowujący na stronę z dokładniejsz
 
 ### Nowości i wydarzenia: ###
 
-![MovieDetails](http://url/to/img.png)
+![EventsAndNews](http://url/to/img.png)
 
 ---
 
@@ -78,9 +78,11 @@ Login: admin@gmail.com
 Hasło: ADmin9
 Jest w stanie zarządzać (dodawać, usuwać, edytować) wszystkim co pojawi się na stronie:
 - Filmami
-- Kinami
+- Kinami (z podglądem na Mapę Google)
 - Kategoriami filmów
 - Repertuarem
 - Banerami (slider na głownej stronie)
 - Wydarzeniami
 - Nowościami
+
+![AdminPanel](http://url/to/img.png)
